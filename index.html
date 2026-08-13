@@ -116,20 +116,6 @@
             transforma.
           </h1>
 
-          <!-- Presença do Huck no mobile: mesma foto e mesmo enquadramento do
-               .hero__figure (coluna do desktop), em faixa cinematográfica de
-               largura total. Elemento separado — não o .hero__figure — para
-               não interferir no grid de duas colunas do desktop; os dois
-               nunca ficam visíveis ao mesmo tempo (ver media queries). -->
-          <figure class="hero__photo-mobile" data-reveal style="--d:.09s">
-            <img src="assets/img/huck-retrato.webp" alt="Huck Pereira, personal trainer, na academia" width="720"
-              height="960" fetchpriority="high" decoding="async">
-            <figcaption>
-              <strong>Huck Pereira</strong>
-              <span>Personal trainer formado</span>
-            </figcaption>
-          </figure>
-
           <p class="hero__lead" data-reveal style="--d:.12s">
             Sou o Huck. Ajudo pessoas a saírem do treino solto e sem direção
             para um acompanhamento estruturado — com plano, correção de execução
@@ -153,7 +139,7 @@
 
         <figure class="hero__figure" data-reveal style="--d:.2s">
           <img src="assets/img/huck-retrato.webp" alt="Huck Pereira, personal trainer, na academia" width="720"
-            height="960" decoding="async">
+            height="960" fetchpriority="high" decoding="async">
           <figcaption class="hero__badge">
             <strong>Huck Pereira</strong>
             <span>Personal trainer formado</span>
