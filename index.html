@@ -31,6 +31,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="image" href="assets/img/gym-hero.webp" media="(min-width: 900px)">
+  <link rel="preload" as="image" href="assets/img/huck-retrato.webp" media="(max-width: 899px)">
   <link
     href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet">
@@ -114,6 +115,20 @@
             <em>Treinar com método</em><br>
             transforma.
           </h1>
+
+          <!-- Presença do Huck no mobile: mesma foto e mesmo enquadramento do
+               .hero__figure (coluna do desktop), em faixa cinematográfica de
+               largura total. Elemento separado — não o .hero__figure — para
+               não interferir no grid de duas colunas do desktop; os dois
+               nunca ficam visíveis ao mesmo tempo (ver media queries). -->
+          <figure class="hero__photo-mobile" data-reveal style="--d:.09s">
+            <img src="assets/img/huck-retrato.webp" alt="Huck Pereira, personal trainer, na academia" width="720"
+              height="960" fetchpriority="high" decoding="async">
+            <figcaption>
+              <strong>Huck Pereira</strong>
+              <span>Personal trainer formado</span>
+            </figcaption>
+          </figure>
 
           <p class="hero__lead" data-reveal style="--d:.12s">
             Sou o Huck. Ajudo pessoas a saírem do treino solto e sem direção
