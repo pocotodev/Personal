@@ -1,0 +1,6 @@
+# Vercel
+.vercel
+
+# Dependências — o site é estático e não tem build step.
+# Mantidas na branch main, junto da versão original.
+node_modules
