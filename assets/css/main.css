@@ -479,7 +479,14 @@ p {
 
   .nav {
     position: fixed;
-    inset: 0 0 0 auto;
+    top: 0;
+    right: 0;
+    /* altura explícita em vez de "esticar" via top+bottom: em alguns
+       motores de renderização, position:fixed + display:flex com
+       altura implícita (top:0;bottom:0, sem height) não estica
+       corretamente — o painel colapsa para a altura do padding,
+       escondendo os links. Mesma unidade já usada em .hero. */
+    height: 100svh;
     z-index: 95;
     width: min(340px, 86vw);
     padding: calc(var(--header-h) + 1.5rem) var(--pad-x) 2rem;
@@ -802,6 +809,28 @@ p {
   70% {
     opacity: 0;
     transform: translateY(13px);
+  }
+}
+
+/* Mais respiro entre os blocos do Hero no mobile — headline, foto,
+   texto, CTAs e diferenciais ficavam próximos demais um do outro. */
+@media (max-width: 899px) {
+  .hero__photo-mobile {
+    margin-top: 2.25rem;
+  }
+
+  .hero__lead {
+    margin-top: 2rem;
+  }
+
+  .hero__actions {
+    margin-top: 2.5rem;
+  }
+
+  .hero__proof {
+    gap: 1.1rem;
+    margin-top: 1rem;
+    padding-top: 2rem;
   }
 }
 
