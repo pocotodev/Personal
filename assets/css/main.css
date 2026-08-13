@@ -404,6 +404,12 @@ p {
   transform: scaleX(1);
 }
 
+/* O CTA vive apenas dentro do menu mobile. No desktop o header fica limpo
+   e a ação sempre disponível é o botão flutuante do WhatsApp. */
+.nav__cta {
+  display: none;
+}
+
 .burger {
   display: none;
   position: relative;
@@ -506,8 +512,12 @@ p {
     display: none;
   }
 
+  /* no menu mobile é a ação principal, então ganha tamanho cheio */
   .nav__cta {
+    display: inline-flex;
     margin-top: .5rem;
+    min-height: 48px;
+    font-size: var(--fs-sm);
   }
 }
 
