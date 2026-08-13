@@ -1,19 +1,10 @@
 {
-  "name": "academia",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "huck-pereira-personal",
+  "version": "2.0.0",
+  "description": "Site institucional de Huck Pereira, personal trainer em Marau-RS. HTML, CSS e JavaScript puros, sem build step.",
+  "private": true,
+  "license": "UNLICENSED",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "@tailwindcss/cli": "^4.1.4",
-    "express": "^5.1.0"
-  },
-  "devDependencies": {
-    "tailwindcss": "^4.1.4"
+    "dev": "python -m http.server 8765"
   }
 }
