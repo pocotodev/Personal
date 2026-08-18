@@ -33,6 +33,11 @@
   --green-400: #1d9c58;
   --green-300: #35c07a;
   --green-line: rgba(53, 192, 122, .34);
+
+  /* O dourado da marca rende 8:1 sobre o carvão, mas só 2,2:1 sobre o
+     off-white — abaixo do mínimo de leitura. Esta é a mesma matiz
+     escurecida até 4,6:1, usada apenas em texto sobre fundo claro. */
+  --gold-deep: #8a6a12;
   --green-glow: rgba(53, 192, 122, .09);
 
   /* Profundidade do fundo escuro: o hero abre no tom mais fechado e vai
@@ -54,11 +59,15 @@
      o mínimo pôde baixar sem virar letra miúda: em 320px são duas linhas
      em vez das cinco anteriores. */
   --fs-hero: clamp(2.4rem, 7.6vw, 4.75rem);
-  --fs-h2: clamp(2.1rem, 5.6vw, 3.6rem);
-  --fs-h3: clamp(1.1rem, 2.2vw, 1.3rem);
-  --fs-lead: clamp(1rem, 2.1vw, 1.16rem);
-  --fs-body: 1rem;
-  --fs-sm: .9rem;
+  --fs-h2: clamp(1.95rem, 5.6vw, 3.6rem);
+  --fs-h3: clamp(1.12rem, 2.2vw, 1.3rem);
+  --fs-lead: clamp(1.05rem, 2.1vw, 1.18rem);
+  --fs-body: 1.0625rem;
+  /* Texto corrido dentro de cartões. Antes usavam --fs-sm (14,4px), que é
+     tamanho de rótulo, não de leitura no celular. --fs-sm segue valendo
+     para rótulos, botões e legendas. */
+  --fs-copy: 1rem;
+  --fs-sm: .95rem;
   --fs-xs: .78rem;
 
   /* Ritmo */
@@ -216,8 +225,15 @@ p {
   font-weight: 600;
   letter-spacing: .16em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-deep);
   margin-bottom: 1rem;
+}
+
+/* Sobre carvão o dourado tem contraste de sobra e é ele que assina a
+   identidade — a versão escura vale só no fundo claro. */
+.section--ink .eyebrow,
+.cta-final .eyebrow {
+  color: var(--gold);
 }
 
 .sec-title {
@@ -360,13 +376,16 @@ p {
 
 .btn--sm {
   padding: .6rem 1.1rem;
-  min-height: 42px;
+  min-height: 44px;
   font-size: var(--fs-xs);
 }
 
 .btn--block {
   display: flex;
   width: 100%;
+  /* A largura vem do container; o padding lateral só afasta o texto da
+     borda. Curto para a maior palavra do rótulo caber em telas estreitas. */
+  padding-inline: 1rem;
 }
 
 /* ---------- 6. MARCA ---------- */
@@ -374,6 +393,7 @@ p {
   display: inline-flex;
   align-items: center;
   gap: .7rem;
+  min-height: 44px;
 }
 
 .brand__mark {
@@ -1267,7 +1287,7 @@ html:not(.js) .hero {
   font-family: var(--font-display);
   font-size: 1.1rem;
   letter-spacing: .14em;
-  color: var(--gold);
+  color: var(--gold-deep);
   margin-bottom: .85rem;
 }
 
@@ -1278,8 +1298,31 @@ html:not(.js) .hero {
 
 .pain p {
   color: var(--txt-dark-mut);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-copy);
   max-width: 46ch;
+}
+
+@media (max-width: 719px) {
+
+  /* Quatro cartões idênticos empilhados viravam uma sequência longa e
+     monótona de rolar. Aqui viram lista: o número deixa de ocupar linha
+     própria e passa a marcar a coluna da esquerda. */
+  .pain {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 1rem;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .pain__num {
+    grid-row: 1 / span 2;
+    margin-bottom: 0;
+    padding-top: .15em;
+  }
+
+  .pain h3 {
+    margin-bottom: .35rem;
+  }
 }
 
 @media (min-width: 720px) {
@@ -1296,12 +1339,37 @@ html:not(.js) .hero {
 }
 
 .step {
+  position: relative;
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 1.25rem;
   align-items: start;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+/* No celular as cinco etapas viram linha do tempo: um fio liga um número ao
+   próximo e substitui o risco horizontal, que cortava a sequência em cinco
+   blocos soltos. */
+@media (max-width: 739px) {
+  .step {
+    border-bottom: 0;
+    padding-bottom: 2rem;
+  }
+
+  .step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 23px;
+    top: 54px;
+    bottom: .5rem;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold-line), rgba(255, 255, 255, .06));
+  }
+
+  .step:last-child {
+    padding-bottom: 0;
+  }
 }
 
 .step:last-child {
@@ -1335,7 +1403,7 @@ html:not(.js) .hero {
 
 .step__body p {
   color: var(--txt-light-mut);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-copy);
   max-width: 48ch;
 }
 
@@ -1408,7 +1476,7 @@ html:not(.js) .hero {
   font-weight: 600;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-deep);
   margin-bottom: .2rem;
 }
 
@@ -1475,7 +1543,12 @@ html:not(.js) .hero {
 .plan {
   display: flex;
   flex-direction: column;
-  padding: clamp(1.75rem, 4vw, 2.75rem);
+  /* min-width:0 é obrigatório: item de grade não encolhe abaixo do próprio
+     min-content, então uma palavra longa empurrava a coluna para 302px numa
+     tela de 320px — estouro horizontal que só não aparecia porque o body
+     mascara com overflow-x:hidden. */
+  min-width: 0;
+  padding: clamp(1.25rem, 4vw, 2.75rem);
   background: var(--ink-850);
   border: 1px solid rgba(255, 255, 255, .09);
   border-radius: var(--radius-lg);
@@ -1507,7 +1580,7 @@ html:not(.js) .hero {
 
 .plan__for {
   color: var(--bone-300);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-copy);
   padding-bottom: 1.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, .09);
 }
@@ -1521,7 +1594,7 @@ html:not(.js) .hero {
 .plan__list li {
   position: relative;
   padding-left: 1.7rem;
-  font-size: var(--fs-sm);
+  font-size: var(--fs-copy);
   color: var(--bone-300);
 }
 
@@ -1555,7 +1628,7 @@ html:not(.js) .hero {
 .plans__note {
   margin-top: 2.5rem;
   text-align: center;
-  font-size: var(--fs-sm);
+  font-size: var(--fs-copy);
   color: var(--txt-light-mut);
 }
 
@@ -1602,7 +1675,7 @@ html:not(.js) .hero {
 
 .meeting__copy p {
   color: var(--txt-dark-mut);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-copy);
   max-width: 52ch;
 }
 
@@ -1617,12 +1690,15 @@ html:not(.js) .hero {
 }
 
 /* ---------- 14. FAQ ---------- */
+/* O FAQ passou para fundo claro: serviços, dúvidas e CTA final eram três
+   blocos escuros seguidos, quase 2.600px de carvão sem respiro. Com ele
+   claro a página volta a alternar claro/escuro do início ao fim. */
 .faq {
-  border-top: 1px solid rgba(255, 255, 255, .1);
+  border-top: 1px solid var(--bone-300);
 }
 
 .faq__item {
-  border-bottom: 1px solid rgba(255, 255, 255, .1);
+  border-bottom: 1px solid var(--bone-300);
 }
 
 .faq h3 {
@@ -1639,15 +1715,15 @@ html:not(.js) .hero {
   width: 100%;
   padding: 1.4rem .25rem;
   text-align: left;
-  font-size: 1.02rem;
+  font-size: 1.05rem;
   font-weight: 600;
   line-height: 1.4;
-  color: var(--txt-light);
+  color: var(--txt-dark);
   transition: color .25s var(--ease);
 }
 
 .faq__q:hover {
-  color: var(--gold);
+  color: var(--gold-deep);
 }
 
 .faq__icon {
@@ -1664,7 +1740,7 @@ html:not(.js) .hero {
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  background: var(--gold);
+  background: var(--gold-deep);
   transition: transform .35s var(--ease), opacity .25s var(--ease);
 }
 
@@ -1683,25 +1759,37 @@ html:not(.js) .hero {
   opacity: 0;
 }
 
-.faq__a {
+.faq__a>p {
+  font-size: var(--fs-copy);
+  color: var(--txt-dark-mut);
+  max-width: 62ch;
+  padding-bottom: 1.5rem;
+}
+
+/* O acordeão só fecha as respostas quando há JS para reabri-las. Sem
+   script o FAQ inteiro nasce aberto — são sete respostas reais da página,
+   não podem depender do JavaScript para existir. */
+.js .faq__a {
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows .38s var(--ease);
 }
 
-.faq__a>p {
+.js .faq__a>p {
   overflow: hidden;
-  font-size: var(--fs-sm);
-  color: var(--txt-light-mut);
-  max-width: 62ch;
+  padding-bottom: 0;
 }
 
-.faq__item.is-open .faq__a {
+.js .faq__item.is-open .faq__a {
   grid-template-rows: 1fr;
 }
 
-.faq__item.is-open .faq__a>p {
+.js .faq__item.is-open .faq__a>p {
   padding-bottom: 1.5rem;
+}
+
+html:not(.js) .faq__icon {
+  display: none;
 }
 
 /* ---------- 15. CTA FINAL ---------- */
@@ -1796,7 +1884,7 @@ html:not(.js) .hero {
 .site-footer__col li a {
   display: inline-flex;
   align-items: center;
-  min-height: 40px;
+  min-height: 44px;
 }
 
 .site-footer a {
@@ -1839,7 +1927,7 @@ html:not(.js) .hero {
 .site-footer__bottom a {
   display: inline-flex;
   align-items: center;
-  min-height: 36px;
+  min-height: 44px;
 }
 
 .site-footer__bottom a:hover {
@@ -1966,7 +2054,7 @@ body.has-wafixed {
   font-size: var(--fs-xs);
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-deep);
 }
 
 .legal__intro {
@@ -1996,7 +2084,7 @@ body.has-wafixed {
   font-size: .95rem;
   font-weight: 400;
   letter-spacing: .1em;
-  color: var(--gold);
+  color: var(--gold-deep);
 }
 
 .legal p,

@@ -118,6 +118,19 @@
   window.addEventListener('load', onScroll);
 
   /* ---------- FAQ (accordion acessível) ---------- */
+  // Resposta recolhida sai da árvore de acessibilidade. Sem isto o leitor de
+  // tela percorre as sete respostas mesmo com o acordeão fechado — a altura
+  // zero do grid esconde para o olho, não para a tecnologia assistiva.
+  const temInert = 'inert' in HTMLElement.prototype;
+
+  const abrirItem = (item, aberto) => {
+    item.classList.toggle('is-open', aberto);
+    $('.faq__q', item).setAttribute('aria-expanded', String(aberto));
+    if (temInert) $('.faq__a', item).inert = !aberto;
+  };
+
+  $$('.faq__item').forEach((item) => abrirItem(item, false));
+
   $$('.faq__q').forEach((btn) => {
     btn.addEventListener('click', () => {
       const item = btn.closest('.faq__item');
@@ -125,14 +138,10 @@
 
       // modo acordeão: fecha os demais
       $$('.faq__item.is-open').forEach((other) => {
-        if (other !== item) {
-          other.classList.remove('is-open');
-          $('.faq__q', other).setAttribute('aria-expanded', 'false');
-        }
+        if (other !== item) abrirItem(other, false);
       });
 
-      item.classList.toggle('is-open', !isOpen);
-      btn.setAttribute('aria-expanded', String(!isOpen));
+      abrirItem(item, !isOpen);
     });
   });
 

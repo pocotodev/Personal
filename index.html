@@ -37,7 +37,7 @@
     rel="stylesheet">
   <!-- ?v= força o navegador a buscar a versão nova em vez da que está em
        cache. Incrementar este número sempre que main.css ou main.js mudarem. -->
-  <link rel="stylesheet" href="assets/css/main.css?v=5">
+  <link rel="stylesheet" href="assets/css/main.css?v=6">
 
   <!-- Marca que o JS está ativo: as animações de entrada só valem nesse caso.
        Sem JS, o conteúdo é exibido normalmente. -->
@@ -434,7 +434,7 @@
     </section>
 
     <!-- ============ FAQ ============ -->
-    <section class="section section--ink" id="faq">
+    <section class="section section--bone" id="faq">
       <div class="shell shell--narrow">
         <header class="sec-head sec-head--center" data-reveal>
           <p class="eyebrow">Antes de começar</p>
@@ -444,12 +444,12 @@
         <div class="faq" data-reveal>
           <div class="faq__item">
             <h3>
-              <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-1">
+              <button type="button" class="faq__q" id="faq-1-btn" aria-expanded="false" aria-controls="faq-1">
                 <span>Preciso já ter experiência com treino?</span>
                 <span class="faq__icon" aria-hidden="true"></span>
               </button>
             </h3>
-            <div class="faq__a" id="faq-1" role="region">
+            <div class="faq__a" id="faq-1" role="region" aria-labelledby="faq-1-btn">
               <p>Não. Os treinos são montados para o seu nível, do iniciante ao avançado.
                 Se você nunca pisou numa academia, começamos pelo básico bem-feito.</p>
             </div>
@@ -457,12 +457,12 @@
 
           <div class="faq__item">
             <h3>
-              <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-2">
+              <button type="button" class="faq__q" id="faq-2-btn" aria-expanded="false" aria-controls="faq-2">
                 <span>O acompanhamento é presencial ou online?</span>
                 <span class="faq__icon" aria-hidden="true"></span>
               </button>
             </h3>
-            <div class="faq__a" id="faq-2" role="region">
+            <div class="faq__a" id="faq-2" role="region" aria-labelledby="faq-2-btn">
               <p>Os dois. Presencial para quem está em Marau-RS e região, e online com
                 acompanhamento completo para quem treina em outro lugar.</p>
             </div>
@@ -470,12 +470,12 @@
 
           <div class="faq__item">
             <h3>
-              <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-3">
+              <button type="button" class="faq__q" id="faq-3-btn" aria-expanded="false" aria-controls="faq-3">
                 <span>Como funciona a primeira conversa?</span>
                 <span class="faq__icon" aria-hidden="true"></span>
               </button>
             </h3>
-            <div class="faq__a" id="faq-3" role="region">
+            <div class="faq__a" id="faq-3" role="region" aria-labelledby="faq-3-btn">
               <p>É um bate-papo para entender seus objetivos, suas limitações e sua rotina —
                 sem compromisso. A partir dali eu monto a proposta de acompanhamento.</p>
             </div>
@@ -483,12 +483,12 @@
 
           <div class="faq__item">
             <h3>
-              <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-4">
+              <button type="button" class="faq__q" id="faq-4-btn" aria-expanded="false" aria-controls="faq-4">
                 <span>Qual é a frequência dos treinos?</span>
                 <span class="faq__icon" aria-hidden="true"></span>
               </button>
             </h3>
-            <div class="faq__a" id="faq-4" role="region">
+            <div class="faq__a" id="faq-4" role="region" aria-labelledby="faq-4-btn">
               <p>Definimos juntos, a partir do seu objetivo e do tempo que você tem.
                 Os planos mais comuns ficam entre 2 e 5 vezes por semana.</p>
             </div>
@@ -496,12 +496,12 @@
 
           <div class="faq__item">
             <h3>
-              <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-5">
+              <button type="button" class="faq__q" id="faq-5-btn" aria-expanded="false" aria-controls="faq-5">
                 <span>O treino é mesmo personalizado?</span>
                 <span class="faq__icon" aria-hidden="true"></span>
               </button>
             </h3>
-            <div class="faq__a" id="faq-5" role="region">
+            <div class="faq__a" id="faq-5" role="region" aria-labelledby="faq-5-btn">
               <p>Sim. O plano parte do seu nível, do seu histórico e das suas limitações —
                 e vai sendo ajustado conforme você evolui. Não é planilha pronta.</p>
             </div>
@@ -509,12 +509,12 @@
 
           <div class="faq__item">
             <h3>
-              <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-6">
+              <button type="button" class="faq__q" id="faq-6-btn" aria-expanded="false" aria-controls="faq-6">
                 <span>Em quanto tempo vejo resultados?</span>
                 <span class="faq__icon" aria-hidden="true"></span>
               </button>
             </h3>
-            <div class="faq__a" id="faq-6" role="region">
+            <div class="faq__a" id="faq-6" role="region" aria-labelledby="faq-6-btn">
               <p>Varia bastante de pessoa para pessoa — depende do ponto de partida, da
                 constância e da rotina de cada um. Com dedicação, muitos alunos relatam
                 perceber mudanças entre 4 e 8 semanas.</p>
@@ -523,12 +523,12 @@
 
           <div class="faq__item">
             <h3>
-              <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-7">
+              <button type="button" class="faq__q" id="faq-7-btn" aria-expanded="false" aria-controls="faq-7">
                 <span>Como faço para começar?</span>
                 <span class="faq__icon" aria-hidden="true"></span>
               </button>
             </h3>
-            <div class="faq__a" id="faq-7" role="region">
+            <div class="faq__a" id="faq-7" role="region" aria-labelledby="faq-7-btn">
               <p>Me chame no WhatsApp. A gente marca a conversa inicial, eu entendo o seu
                 caso e te explico como seria o acompanhamento na prática.</p>
             </div>
@@ -654,7 +654,7 @@
     <span>Falar com o Huck</span>
   </a>
 
-  <script src="assets/js/main.js?v=5" defer></script>
+  <script src="assets/js/main.js?v=6" defer></script>
 </body>
 
 </html>
