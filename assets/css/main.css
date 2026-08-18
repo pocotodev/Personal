@@ -23,6 +23,24 @@
   --gold-soft: rgba(201, 162, 39, .12);
   --gold-line: rgba(201, 162, 39, .28);
 
+  /* Verde — destaque estratégico da primeira dobra. Aparece na ação, no
+     ponto de status, nos fios finos e na palavra-chave do título; nunca
+     como cor de superfície. O verde do app (#1FA855) rende só 3,1:1 com
+     texto branco, abaixo do mínimo de leitura: --green-500 fecha 4,6:1.
+     --green-300 é a versão para texto e detalhe sobre o carvão, onde
+     rende 8,2:1. O dourado segue sendo a cor da marca no resto do site. */
+  --green-500: #17864c;
+  --green-400: #1d9c58;
+  --green-300: #35c07a;
+  --green-line: rgba(53, 192, 122, .34);
+  --green-glow: rgba(53, 192, 122, .09);
+
+  /* Profundidade do fundo escuro: o hero abre no tom mais fechado e vai
+     clareando até encontrar a seção seguinte. */
+  --ink-950: #070709;
+  --line-soft: rgba(255, 255, 255, .08);
+  --line-mid: rgba(255, 255, 255, .15);
+
   --txt-dark: #17171a;
   --txt-dark-mut: #5c5850;
   --txt-light: #f2efe9;
@@ -32,7 +50,10 @@
   --font-display: "Bebas Neue", "Arial Narrow", Impact, sans-serif;
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  --fs-hero: clamp(2.85rem, 9.5vw, 5.75rem);
+  /* O título encurtou de 53 para 30 caracteres com a nova hierarquia, então
+     o mínimo pôde baixar sem virar letra miúda: em 320px são duas linhas
+     em vez das cinco anteriores. */
+  --fs-hero: clamp(2.4rem, 7.6vw, 4.75rem);
   --fs-h2: clamp(2.1rem, 5.6vw, 3.6rem);
   --fs-h3: clamp(1.1rem, 2.2vw, 1.3rem);
   --fs-lead: clamp(1rem, 2.1vw, 1.16rem);
@@ -56,7 +77,9 @@
   --shadow-soft: 0 1px 2px rgba(16, 16, 19, .04), 0 8px 24px -12px rgba(16, 16, 19, .16);
   --shadow-lift: 0 2px 4px rgba(16, 16, 19, .05), 0 20px 44px -18px rgba(16, 16, 19, .26);
 
-  --header-h: 74px;
+  /* Cabeçalho baixo no celular para devolver altura ao hero; mais alto no
+     desktop, onde ele acomoda o contato. */
+  --header-h: 62px;
 }
 
 /* ---------- 2. RESET ---------- */
@@ -91,6 +114,14 @@ svg,
 picture {
   display: block;
   max-width: 100%;
+}
+
+/* Sprite de <symbol>: fora do fluxo, não ocupa altura nenhuma. */
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
 
 img {
@@ -250,8 +281,16 @@ p {
   flex-shrink: 0;
 }
 
-.btn:hover svg {
+/* Só a seta anda no hover; o ícone do WhatsApp identifica o canal e
+   ficaria estranho deslizando. */
+.btn:hover svg:not(.ico-wa) {
   transform: translateX(3px);
+}
+
+.ico-wa {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
 }
 
 .btn--gold {
@@ -264,6 +303,41 @@ p {
   --btn-bg: var(--gold-lt);
   --btn-bd: var(--gold-lt);
   transform: translateY(-2px);
+}
+
+/* Ação principal do site. O verde diz "WhatsApp" antes de o texto ser
+   lido; a sombra é do carvão, não do próprio verde, para não virar botão
+   de anúncio. */
+.btn--wa {
+  --btn-bg: var(--green-500);
+  --btn-fg: #fff;
+  --btn-bd: var(--green-500);
+  box-shadow: 0 12px 32px -16px rgba(7, 7, 9, .95);
+}
+
+.btn--wa:hover {
+  --btn-bg: var(--green-400);
+  --btn-bd: var(--green-400);
+  transform: translateY(-2px);
+}
+
+/* Ação secundária: mesma área de toque, peso visual bem menor. Dois botões
+   iguais na primeira dobra faziam o visitante escolher entre pares em vez
+   de seguir o caminho principal. */
+.btn--quiet {
+  --btn-bg: transparent;
+  --btn-bd: transparent;
+  --btn-fg: var(--bone-300);
+  padding-inline: .35rem;
+  letter-spacing: .06em;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 32%, transparent);
+  text-underline-offset: 7px;
+}
+
+.btn--quiet:hover {
+  --btn-fg: var(--green-300);
+  transform: none;
 }
 
 .btn--ghost {
@@ -341,37 +415,36 @@ p {
   color: var(--txt-light-mut);
 }
 
-/* ---------- 7. HEADER ---------- */
-.site-header {
+/* ---------- 7. CABEÇALHO ---------- */
+/* Fixo e transparente sobre o hero; sólido a partir de 24px de rolagem.
+   ATENÇÃO: nada de backdrop-filter/filter/transform no .masthead enquanto o
+   menu mobile for descendente dele. Qualquer uma dessas propriedades o
+   transforma em containing block para descendentes position:fixed — o painel
+   .nav passaria a se posicionar pela caixa do cabeçalho em vez da viewport e
+   colapsaria. O blur só entra a partir de 900px, onde o .nav é uma barra
+   horizontal comum. */
+.masthead {
   position: fixed;
   inset: 0 0 auto;
   z-index: 100;
-  transition: background .35s var(--ease), border-color .35s var(--ease),
-    backdrop-filter .35s var(--ease);
   border-bottom: 1px solid transparent;
+  transition: background .3s var(--ease), border-color .3s var(--ease);
 }
 
-/* ATENÇÃO: nada de backdrop-filter/filter/transform no .site-header
-   enquanto o menu mobile for descendente dele. Qualquer uma dessas
-   propriedades transforma o header em containing block para
-   descendentes position:fixed — o painel .nav passaria a se posicionar
-   pela caixa de 74px do header em vez da viewport, e colapsaria.
-   O blur só é aplicado a partir de 900px, onde o .nav é uma barra
-   horizontal comum e não depende de position:fixed. */
-.site-header.is-stuck {
-  background: rgba(11, 11, 12, .94);
-  border-bottom-color: rgba(255, 255, 255, .07);
+.masthead.is-stuck {
+  background: rgba(7, 7, 9, .93);
+  border-bottom-color: var(--line-soft);
 }
 
 @media (min-width: 900px) {
-  .site-header.is-stuck {
-    background: rgba(11, 11, 12, .88);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+  .masthead.is-stuck {
+    background: rgba(7, 7, 9, .8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
 }
 
-.site-header__inner {
+.masthead__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -379,15 +452,77 @@ p {
   min-height: var(--header-h);
 }
 
+/* ---- assinatura da marca ---- */
+.lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  min-height: 44px;
+}
+
+.lockup__mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  line-height: 1;
+  padding-top: .16em;
+  color: var(--bone);
+  border: 1px solid var(--line-mid);
+  border-radius: 3px;
+}
+
+/* Único detalhe gráfico do monograma: um canto verde de 1px. Marca a cor
+   do sistema sem transformar o logo em selo. */
+.lockup__mark::after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  width: 10px;
+  height: 10px;
+  border-top: 1px solid var(--green-300);
+  border-left: 1px solid var(--green-300);
+  border-top-left-radius: 3px;
+}
+
+.lockup__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.12;
+}
+
+.lockup__name {
+  font-family: var(--font-display);
+  font-size: 1.22rem;
+  font-weight: 400;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--bone);
+}
+
+.lockup__role {
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--txt-light-mut);
+}
+
+/* ---- navegação ---- */
 .nav__list {
   display: flex;
-  gap: .35rem;
+  gap: .25rem;
 }
 
 .nav__list a {
   display: block;
   position: relative;
-  padding: .5rem .85rem;
+  padding: .65rem .85rem;
   font-size: var(--fs-sm);
   font-weight: 500;
   color: var(--bone-300);
@@ -399,9 +534,9 @@ p {
   position: absolute;
   left: .85rem;
   right: .85rem;
-  bottom: .28rem;
+  bottom: .35rem;
   height: 1px;
-  background: var(--gold);
+  background: var(--green-300);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform .3s var(--ease);
@@ -417,12 +552,65 @@ p {
   transform: scaleX(1);
 }
 
-/* O CTA vive apenas dentro do menu mobile. No desktop o header fica limpo
-   e a ação sempre disponível é o botão flutuante do WhatsApp. */
+/* O CTA vive apenas dentro do menu mobile. No desktop quem ocupa o papel
+   de ação do topo é o contato com o número à vista. */
 .nav__cta {
   display: none;
 }
 
+/* ---- contato do cabeçalho (desktop) ----
+   Entra só a partir de 1024px: entre 900 e 1023 a linha ficaria apertada
+   entre a marca e os quatro links. */
+.masthead__contact {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .masthead__contact {
+    display: inline-flex;
+    align-items: center;
+    gap: .7rem;
+    min-height: 44px;
+    padding: .4rem 1.1rem .4rem .9rem;
+    border: 1px solid var(--line-mid);
+    border-radius: 100px;
+    transition: border-color .25s var(--ease), background .25s var(--ease);
+  }
+
+  .masthead__contact .ico-wa {
+    width: 20px;
+    height: 20px;
+    color: var(--green-300);
+  }
+
+  .masthead__contact-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .masthead__contact em {
+    font-style: normal;
+    font-size: .6rem;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--txt-light-mut);
+  }
+
+  .masthead__contact strong {
+    font-size: .92rem;
+    font-weight: 600;
+    color: var(--bone);
+  }
+
+  .masthead__contact:hover {
+    border-color: var(--green-line);
+    background: rgba(53, 192, 122, .07);
+  }
+}
+
+/* ---- botão do menu ---- */
 .burger {
   display: none;
   position: relative;
@@ -469,7 +657,7 @@ p {
   position: fixed;
   inset: 0;
   z-index: 90;
-  background: rgba(11, 11, 12, .55);
+  background: rgba(7, 7, 9, .6);
   backdrop-filter: blur(2px);
   opacity: 0;
   transition: opacity .3s var(--ease);
@@ -484,37 +672,43 @@ p {
     display: block;
   }
 
-  /* sem backdrop-filter: ver nota em .site-header.is-stuck.
-     Fundo quase opaco compensa a ausência do blur. */
-  .site-header {
-    background: rgba(11, 11, 12, .96);
+  /* sem backdrop-filter: ver nota em .masthead */
+  .masthead.is-stuck {
+    background: rgba(7, 7, 9, .96);
   }
 
-  .nav {
+  /* A gaveta só existe quando há JS para abri-la — ver bloco "SEM
+     JAVASCRIPT" adiante. */
+  .js .nav {
     position: fixed;
     top: 0;
     right: 0;
-    /* altura explícita em vez de "esticar" via top+bottom: em alguns
-       motores de renderização, position:fixed + display:flex com
-       altura implícita (top:0;bottom:0, sem height) não estica
-       corretamente — o painel colapsa para a altura do padding,
-       escondendo os links. Mesma unidade já usada em .hero. */
+    /* altura explícita em vez de esticar por top+bottom: em alguns motores,
+       position:fixed + flex com altura implícita não estica e o painel
+       colapsa para a altura do padding, escondendo os links. */
     height: 100svh;
     z-index: 95;
     width: min(340px, 86vw);
-    padding: calc(var(--header-h) + 1.5rem) var(--pad-x) 2rem;
-    background: var(--ink-850);
-    border-left: 1px solid rgba(255, 255, 255, .07);
+    padding: calc(var(--header-h) + 1.5rem) var(--pad-x)
+      calc(2rem + env(safe-area-inset-bottom));
+    background: var(--ink-900);
+    border-left: 1px solid var(--line-soft);
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.25rem;
     transform: translateX(101%);
-    transition: transform .38s var(--ease);
+    /* visibility tira a gaveta fechada da ordem de tabulação: sem isso os
+       links seguem focáveis fora da tela e quem navega por teclado cai
+       dentro de um menu invisível. O atraso deixa a animação terminar. */
+    visibility: hidden;
+    transition: transform .34s var(--ease), visibility 0s linear .34s;
     overflow-y: auto;
   }
 
-  .nav.is-open {
+  .js .nav.is-open {
     transform: translateX(0);
+    visibility: visible;
+    transition: transform .34s var(--ease), visibility 0s;
   }
 
   .nav__list {
@@ -525,375 +719,526 @@ p {
   .nav__list a {
     padding: 1rem .25rem;
     font-size: 1.05rem;
-    border-bottom: 1px solid rgba(255, 255, 255, .07);
+    border-bottom: 1px solid var(--line-soft);
   }
 
   .nav__list a::after {
     display: none;
   }
 
-  /* no menu mobile é a ação principal, então ganha tamanho cheio */
   .nav__cta {
-    display: inline-flex;
+    display: flex;
+    width: 100%;
     margin-top: .5rem;
-    min-height: 48px;
-    font-size: var(--fs-sm);
   }
+}
+
+/* ---- SEM JAVASCRIPT ----
+   O burger não teria o que fazer e a gaveta não teria como abrir, então o
+   cabeçalho deixa de ser fixo e a navegação vira uma lista visível. Se o
+   script falhar, o site continua navegável. */
+html:not(.js) .masthead {
+  position: static;
+  background: var(--ink-950);
+}
+
+html:not(.js) .burger {
+  display: none;
+}
+
+@media (max-width: 899px) {
+  html:not(.js) .masthead__inner {
+    flex-wrap: wrap;
+    padding-bottom: .85rem;
+  }
+
+  html:not(.js) .nav {
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .85rem;
+    align-items: flex-start;
+  }
+
+  html:not(.js) .nav__list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0 .75rem;
+  }
+
+  html:not(.js) .nav__list a {
+    border-bottom: 0;
+    font-size: var(--fs-sm);
+    padding-inline: 0;
+  }
+
+  html:not(.js) .nav__cta {
+    width: auto;
+  }
+}
+
+html:not(.js) .hero {
+  padding-top: 2.5rem;
 }
 
 /* ---------- 8. HERO ---------- */
 .hero {
   position: relative;
   isolation: isolate;
-  display: flex;
-  align-items: center;
-  min-height: 100svh;
-  padding-block: calc(var(--header-h) + 3rem) 5rem;
-  background: var(--ink-900);
+  padding-block: calc(var(--header-h) + 1rem) 2.75rem;
+  background: var(--ink-950);
   color: var(--txt-light);
   overflow: hidden;
 }
 
-.hero__bg {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-}
-
-.hero__bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: .5;
-}
-
-.hero::after {
-  content: "";
+/* Profundidade sem fotografia: um facho difuso atrás do texto, um brilho
+   verde muito baixo do lado do retrato e um degradê que abre no tom mais
+   fechado e clareia até a seção seguinte. Substitui o gym-hero.webp, que
+   entrava a 50% de opacidade sob um gradiente de 95% e virava borrão. */
+.hero__ground {
   position: absolute;
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(115% 85% at 12% 40%, rgba(11, 11, 12, .95) 0%, rgba(11, 11, 12, .72) 42%, rgba(11, 11, 12, .5) 100%),
-    linear-gradient(to top, var(--ink-900) 2%, transparent 42%);
+    radial-gradient(78% 58% at 12% 24%, rgba(255, 255, 255, .062), transparent 68%),
+    radial-gradient(58% 48% at 92% 6%, var(--green-glow), transparent 70%),
+    linear-gradient(to bottom, var(--ink-950) 0%, var(--ink-900) 54%, var(--ink-850) 100%);
 }
 
-.hero__inner {
+/* Fio que fecha o hero e anuncia o corte para a seção clara. */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--green-line) 24%,
+      var(--green-line) 76%, transparent);
+}
+
+.hero__grid {
   display: grid;
-  gap: clamp(2.5rem, 6vw, 4rem);
-  align-items: center;
+  gap: 1.6rem;
   width: 100%;
 }
 
-.kicker {
+/* ---- coluna de texto ---- */
+.hero__eyebrow {
   display: inline-flex;
   align-items: center;
   gap: .6rem;
   font-size: var(--fs-xs);
   font-weight: 600;
-  letter-spacing: .16em;
+  letter-spacing: .18em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--bone-300);
 }
 
-.kicker__dot {
-  width: 6px;
-  height: 6px;
+.hero__dot {
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 0 4px var(--gold-soft);
+  background: var(--green-300);
+  box-shadow: 0 0 0 4px var(--green-glow);
+}
+
+.hero__pre {
+  margin-top: 1.1rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.1rem, 3.4vw, 1.55rem);
+  line-height: 1;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--txt-light-mut);
 }
 
 .hero__title {
-  margin-top: 1.5rem;
+  margin-top: .3rem;
   font-family: var(--font-display);
   font-weight: 400;
   font-size: var(--fs-hero);
-  line-height: .92;
-  letter-spacing: .005em;
+  line-height: .94;
+  letter-spacing: .01em;
   text-transform: uppercase;
   text-wrap: balance;
 }
 
 .hero__title em {
   font-style: normal;
-  color: var(--gold);
+  color: var(--green-300);
 }
 
 .hero__lead {
-  margin-top: 1.5rem;
+  margin-top: 1.15rem;
   max-width: 46ch;
   font-size: var(--fs-lead);
+  line-height: 1.7;
   color: var(--bone-300);
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: .85rem;
-  margin-top: 2.25rem;
+  align-items: center;
+  gap: .35rem 1.35rem;
+  margin-top: 1.6rem;
 }
 
-.hero__proof {
-  display: grid;
-  gap: .85rem;
-  margin-top: .5rem;
-  padding-top: 1.75rem;
-  border-top: 1px solid rgba(255, 255, 255, .1);
-  max-width: 42ch;
-}
-
-.hero__proof li {
-  position: relative;
-  padding-left: 1.6rem;
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  line-height: 1.45;
-  color: var(--bone-200);
-}
-
-.hero__proof li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: .48em;
-  width: 8px;
-  height: 8px;
-  border: 1px solid var(--gold);
-  transform: rotate(45deg);
-}
-
-.hero__proof span {
-  display: block;
-  font-weight: 400;
+.hero__micro {
+  margin-top: .9rem;
+  font-size: var(--fs-xs);
+  letter-spacing: .04em;
   color: var(--txt-light-mut);
 }
 
-/* Uma única foto do Huck para todos os tamanhos de tela.
-   Mobile: faixa em sangria de largura total (regras em @media abaixo).
-   Desktop (>=900px): card na coluna lateral do grid.
-   Um só elemento no DOM — é estruturalmente impossível aparecer duplicada. */
-.hero__figure {
+/* ---- retrato ----
+   A figura carrega a geometria; a imagem só preenche. Assim o quadro é
+   determinístico (nada de reflow durante o carregamento) e o recorte muda
+   por breakpoint sem deformar: object-fit cover + object-position pensado
+   para manter rosto e tronco no eixo. */
+.hero__portrait {
   position: relative;
 }
 
-.hero__figure img {
+.hero__portrait img {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  height: 100%;
   object-fit: cover;
-  object-position: center 22%;
-  border-radius: var(--radius-lg);
-  filter: saturate(.92) contrast(1.04);
+  object-position: 58% 15%;
+  /* A parede amarela da academia é forte demais para um fundo escuro
+     sóbrio: a dessaturação parcial a traz para um ocre discreto sem
+     apagar o tom de pele. */
+  filter: saturate(.68) contrast(1.06) brightness(.95);
 }
 
-.hero__figure::before {
+/* Véu inferior: garante o contraste da placa de nome e funde a foto com o
+   fundo do hero em vez de deixá-la recortada. */
+.hero__portrait::after {
   content: "";
   position: absolute;
-  inset: 14px -14px -14px 14px;
-  border: 1px solid var(--gold-line);
-  border-radius: var(--radius-lg);
-  z-index: -1;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(7, 7, 9, .9) 0%,
+      rgba(7, 7, 9, .38) 26%, rgba(7, 7, 9, 0) 54%);
 }
 
-.hero__badge {
+.hero__plate {
   position: absolute;
-  left: -1.25rem;
-  bottom: 1.75rem;
+  left: 1.15rem;
+  right: 1.15rem;
+  bottom: 1.1rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: .12rem;
+  padding-top: .75rem;
+  border-top: 1px solid var(--green-line);
+}
+
+.hero__plate strong {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.hero__plate span {
+  font-size: var(--fs-xs);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--bone-300);
+}
+
+/* ---- trilho de credenciais ---- */
+.hero__creds {
+  display: grid;
+  gap: .9rem;
+  padding-top: 1.35rem;
+  border-top: 1px solid var(--line-soft);
+}
+
+.hero__creds li {
   display: flex;
   flex-direction: column;
   gap: .1rem;
-  padding: .85rem 1.25rem;
-  background: rgba(11, 11, 12, .82);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, .1);
-  border-left: 2px solid var(--gold);
-  border-radius: var(--radius);
 }
 
-.hero__badge strong {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 400;
-  letter-spacing: .06em;
-  text-transform: uppercase;
+.hero__creds strong {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: .01em;
+  color: var(--bone);
 }
 
-.hero__badge span {
+.hero__creds span {
   font-size: var(--fs-xs);
+  line-height: 1.5;
   color: var(--txt-light-mut);
 }
 
-.hero__scroll {
+/* ---- indicação de rolagem ----
+   Só onde sobra altura de verdade. A área clicável tem 44x48; o traço é o
+   desenho, não o alvo. */
+.hero__cue {
   position: absolute;
   left: 50%;
-  bottom: 1.75rem;
+  bottom: 1.1rem;
   translate: -50% 0;
   display: none;
-  width: 26px;
-  height: 42px;
-  border: 1px solid rgba(255, 255, 255, .22);
-  border-radius: 14px;
+  width: 44px;
+  height: 48px;
 }
 
-.hero__scroll span {
+.hero__cue span {
   position: absolute;
   left: 50%;
-  top: 9px;
-  translate: -50% 0;
-  width: 3px;
-  height: 7px;
-  border-radius: 2px;
-  background: var(--gold);
-  animation: scroll-hint 1.9s var(--ease) infinite;
+  top: 50%;
+  translate: -50% -50%;
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(to bottom, transparent, var(--line-mid) 40%, transparent);
+  overflow: hidden;
 }
 
-@keyframes scroll-hint {
+.hero__cue span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 10px;
+  background: var(--green-300);
+  animation: cue 2.4s var(--ease) infinite;
+}
+
+@keyframes cue {
 
   0%,
   100% {
+    transform: translateY(-12px);
     opacity: 0;
-    transform: translateY(0);
   }
 
-  30% {
+  40% {
     opacity: 1;
   }
 
-  70% {
+  80% {
+    transform: translateY(32px);
     opacity: 0;
-    transform: translateY(13px);
   }
 }
 
-/* ---- HERO NO MOBILE ----
-   A foto vira faixa cinematográfica em sangria, logo abaixo dos CTAs:
-   mantém a headline e o botão principal no topo da tela (mais alto que
-   antes) e usa a imagem como respiro visual antes dos diferenciais.
-   Espaçamento generoso entre os blocos — a queixa era de aperto. */
+/* ---- CELULAR ----
+   Sequência retrato → texto → credenciais. O retrato é uma faixa em
+   sangria de altura controlada: presença real do Huck sem espremer nem
+   empurrar o CTA para longe. */
 @media (max-width: 899px) {
-  .hero {
-    padding-block: calc(var(--header-h) + 2.5rem) 4rem;
-  }
-
-  .hero__inner {
-    gap: 3rem;
-  }
-
-  .hero__title {
-    margin-top: 1.75rem;
-  }
-
-  .hero__lead {
-    margin-top: 1.75rem;
-    line-height: 1.7;
-  }
-
-  .hero__actions {
-    margin-top: 2.75rem;
-    gap: 1rem;
-  }
-
-  /* Faixa em sangria: anula o padding lateral do .shell em vez de usar
-     100vw — 100vw inclui a barra de rolagem e deslocaria a faixa em
-     telas com scrollbar persistente. Abaixo de 900px o .shell sempre
-     ocupa a largura total, então isto equivale exatamente à viewport. */
-  .hero__figure {
+  .hero__portrait {
+    order: -1;
     margin-inline: calc(var(--pad-x) * -1);
-    height: clamp(230px, 60vw, 300px);
-    overflow: hidden;
+    height: clamp(250px, 40vh, 340px);
     background: var(--ink-800);
   }
 
-  .hero__figure img {
-    width: 100%;
-    height: 100%;
-    aspect-ratio: auto;
-    object-position: center 16%;
-    border-radius: 0;
+  .hero__portrait img {
+    object-position: 58% 13%;
   }
 
-  /* moldura dourada é decoração do card de desktop */
-  .hero__figure::before {
-    display: none;
+  .hero__plate {
+    left: var(--pad-x);
+    right: var(--pad-x);
+    bottom: .9rem;
   }
 
-  /* legenda vira letreiro sobre a foto, não card flutuante */
-  .hero__badge {
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 2.75rem var(--pad-x) 1rem;
-    background: linear-gradient(to top, rgba(11, 11, 12, .92) 0%, rgba(11, 11, 12, .5) 60%, transparent 100%);
-    border: 0;
-    border-radius: 0;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-
-  .hero__proof {
-    gap: 1.35rem;
-    margin-top: 0;
-    padding-top: 0;
-    border-top: 0;
+  .hero__creds {
+    margin-top: .35rem;
   }
 }
 
-@media (min-width: 900px) {
-  .hero__inner {
-    grid-template-columns: 1.15fr .85fr;
-    row-gap: clamp(2rem, 4vh, 3.25rem);
-  }
-
-  .hero__scroll {
-    display: block;
-  }
-
-  /* prova social vira faixa horizontal sob as duas colunas */
-  .hero__proof {
-    grid-column: 1 / -1;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.25rem;
-    margin-top: 0;
-    max-width: none;
-  }
-}
-
-@media (min-width: 1100px) {
-  .hero__inner {
-    grid-template-columns: 1.2fr .8fr;
-    column-gap: 5rem;
-  }
-}
-
-/* Notebooks e monitores 1080p (viewport útil ~900–950px): comprime a hero
-   para CTA e prova social continuarem acima da dobra */
-@media (min-width: 900px) and (max-height: 1000px) {
+/* Celulares de tela baixa: aperta só o necessário, sem esconder nada. */
+@media (max-width: 899px) and (max-height: 700px) {
   .hero {
-    padding-block: calc(var(--header-h) + 1.5rem) 3.5rem;
+    padding-block: calc(var(--header-h) + .75rem) 2.25rem;
   }
 
-  .hero__title {
-    margin-top: 1rem;
-    /* escala pela largura, mas limitada pela altura da tela */
-    font-size: min(clamp(2.85rem, 6vw, 5.25rem), 7.6vh);
+  .hero__grid {
+    gap: 1rem;
+  }
+
+  .hero__portrait {
+    height: clamp(170px, 28vh, 230px);
+  }
+
+  .hero__pre {
+    margin-top: .85rem;
   }
 
   .hero__lead {
-    margin-top: 1rem;
+    margin-top: .9rem;
+    line-height: 1.6;
   }
 
   .hero__actions {
-    margin-top: 1.5rem;
+    margin-top: 1.2rem;
+  }
+}
+
+/* ---- TABLET ----
+   Ainda em coluna única, mas a faixa em sangria vira um retrato de verdade
+   e o texto ganha largura confortável centralizada. */
+@media (min-width: 620px) and (max-width: 899px) and (min-height: 701px) {
+  .hero__portrait {
+    margin-inline: auto;
+    max-width: 420px;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
   }
 
-  .hero__proof {
-    padding-top: 1.25rem;
+  .hero__portrait img {
+    object-position: 58% 16%;
   }
 
-  .hero__figure img {
-    aspect-ratio: auto;
-    max-height: 60vh;
+  .hero__plate {
+    left: 1.15rem;
+    right: 1.15rem;
   }
+
+  .hero__copy,
+  .hero__creds {
+    max-width: 620px;
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  .hero__creds {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+
+  .hero__creds li {
+    padding-inline: 1rem;
+  }
+
+  .hero__creds li:first-child {
+    padding-left: 0;
+  }
+
+  .hero__creds li+li {
+    border-left: 1px solid var(--line-soft);
+  }
+}
+
+/* ---- DESKTOP ----
+   Duas colunas com o retrato à direita e o trilho de credenciais
+   atravessando a base — composição editorial, não versão esticada do
+   celular. */
+@media (min-width: 900px) {
+  .hero {
+    display: flex;
+    align-items: center;
+    min-height: 100svh;
+    padding-block: calc(var(--header-h) + 2.25rem) 3rem;
+  }
+
+  .hero__grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+    column-gap: clamp(2.5rem, 5vw, 5rem);
+    row-gap: 0;
+    align-items: center;
+  }
+
+  .hero__portrait {
+    aspect-ratio: 4 / 5;
+    max-width: 440px;
+    margin-left: auto;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .hero__creds {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: clamp(1.75rem, 4vh, 3rem);
+  }
+
+  .hero__creds li {
+    padding-inline: clamp(1rem, 2.4vw, 2rem);
+  }
+
+  .hero__creds li:first-child {
+    padding-left: 0;
+  }
+
+  .hero__creds li+li {
+    border-left: 1px solid var(--line-soft);
+  }
+}
+
+@media (min-width: 900px) and (min-height: 800px) {
+  .hero__cue {
+    display: block;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero__grid {
+    column-gap: 5.5rem;
+  }
+
+  .hero__portrait {
+    max-width: 460px;
+  }
+}
+
+/* Notebooks 1366x768 e afins: o conteúdo essencial precisa caber na
+   primeira dobra sem que nada seja escondido. */
+@media (min-width: 900px) and (max-height: 860px) {
+  .hero {
+    padding-block: calc(var(--header-h) + 1.25rem) 2rem;
+  }
+
+  .hero__title {
+    font-size: min(var(--fs-hero), 7.6vh);
+  }
+
+  .hero__pre {
+    margin-top: .8rem;
+  }
+
+  .hero__lead {
+    margin-top: .85rem;
+  }
+
+  .hero__actions {
+    margin-top: 1.15rem;
+  }
+
+  /* Limita pela largura, nao pela altura: max-height quebrava a proporcao
+     4/5 e o retrato virava quase quadrado num notebook de 768px, cortando
+     bem mais do que o previsto. 46vh de largura = 57,5vh de altura. */
+  .hero__portrait {
+    max-width: min(440px, 46vh);
+  }
+
+  .hero__creds {
+    margin-top: 1.35rem;
+    padding-top: 1rem;
+  }
+}
+
+/* Corte para a primeira seção clara: um pouco mais de respiro no topo
+   para o contraste claro/escuro parecer intencional. */
+#para-quem {
+  padding-top: calc(var(--sec-y) + 1rem);
 }
 
 /* ---------- 9. PROBLEMA ---------- */
@@ -1508,36 +1853,75 @@ p {
   }
 }
 
-/* ---------- 17. WHATSAPP FLUTUANTE ---------- */
-.wa-float {
+/* ---------- 17. AÇÃO FIXA DE WHATSAPP ---------- */
+/* Só no celular: no desktop o contato do cabeçalho e o CTA do hero já
+   cobrem a ação, e um terceiro botão flutuante seria repetição.
+   Pílula com rótulo em vez de botão redondo — diz para onde leva, fica
+   centralizada longe do polegar que rola a página e respeita a área
+   segura do aparelho. */
+.wa-fixed {
   position: fixed;
-  right: clamp(1rem, 3vw, 1.75rem);
-  bottom: clamp(1rem, 3vw, 1.75rem);
+  left: 50%;
+  bottom: calc(.85rem + env(safe-area-inset-bottom));
+  translate: -50% 0;
   z-index: 80;
-  display: grid;
-  place-items: center;
-  width: 54px;
-  height: 54px;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  min-height: 50px;
+  padding: .75rem 1.35rem;
   color: #fff;
-  background: #1fa855;
-  border-radius: 50%;
-  box-shadow: 0 6px 22px -6px rgba(31, 168, 85, .6);
+  background: var(--green-500);
+  border-radius: 100px;
+  white-space: nowrap;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: .03em;
+  box-shadow: 0 12px 30px -10px rgba(7, 7, 9, .85);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(14px) scale(.9);
-  transition: opacity .35s var(--ease), transform .35s var(--ease),
-    visibility .35s var(--ease), background .25s var(--ease);
+  transform: translateY(12px) scale(.96);
+  transition: opacity .3s var(--ease), transform .3s var(--ease),
+    visibility .3s var(--ease), background .25s var(--ease);
 }
 
-.wa-float.is-visible {
+.wa-fixed.is-visible {
   opacity: 1;
   visibility: visible;
   transform: none;
 }
 
-.wa-float:hover {
-  background: #189a4c;
-  transform: translateY(-3px);
+.wa-fixed:hover {
+  background: var(--green-400);
+}
+
+.wa-fixed .ico-wa {
+  width: 21px;
+  height: 21px;
+}
+
+/* Com o menu aberto a pílula sai de cena: ação fixa não disputa com a
+   navegação. */
+body.nav-open .wa-fixed {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Reserva a altura da pílula no fim da página para ela nunca cobrir o
+   rodapé. A classe é aplicada pelo JS junto com a própria pílula — sem
+   script não sobra faixa morta. */
+body.has-wafixed {
+  padding-bottom: calc(78px + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 900px) {
+  .wa-fixed {
+    display: none;
+  }
+
+  body.has-wafixed {
+    padding-bottom: 0;
+  }
 }
 
 /* ---------- 18. PÁGINAS LEGAIS ---------- */

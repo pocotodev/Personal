@@ -22,6 +22,9 @@
     if (open) void scrim.offsetWidth;
     scrim.classList.toggle('is-open', open);
     document.body.style.overflow = open ? 'hidden' : '';
+    // A ação fixa de WhatsApp se esconde por esta classe: com o menu
+    // aberto, um botão flutuante disputaria com a navegação.
+    document.body.classList.toggle('nav-open', open);
   };
 
   burger.addEventListener('click', () => {
@@ -41,21 +44,55 @@
     }
   });
 
+  // Foco preso enquanto a gaveta está aberta. O burger entra no ciclo de
+  // propósito: ele continua visível sobre o painel e é por ele que se fecha
+  // o menu. A gaveta fechada some da tabulação pelo visibility:hidden do
+  // CSS — as duas coisas juntas evitam foco em conteúdo invisível.
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || burger.getAttribute('aria-expanded') !== 'true') return;
+    const ciclo = [burger, ...$$('a[href], button', nav)];
+    const primeiro = ciclo[0];
+    const ultimo = ciclo[ciclo.length - 1];
+    if (e.shiftKey && document.activeElement === primeiro) {
+      e.preventDefault();
+      ultimo.focus();
+    } else if (!e.shiftKey && document.activeElement === ultimo) {
+      e.preventDefault();
+      primeiro.focus();
+    }
+  });
+
   // Ao voltar para desktop, garante o menu num estado limpo
   const desktop = window.matchMedia('(min-width: 900px)');
   desktop.addEventListener('change', (e) => {
     if (e.matches) setMenu(false);
   });
 
-  /* ---------- Header ao rolar + botão flutuante ---------- */
+  /* ---------- Cabeçalho ao rolar + ação fixa de WhatsApp ---------- */
   const header = $('#site-header');
-  const waFloat = $('#wa-float');
+  const waFixed = $('#wa-float');
+  const heroCta = $('#hero-cta');
   let ticking = false;
 
+  // A ação fixa entra quando o CTA do hero não está inteiro na tela.
+  // O gatilho anterior era "rolou 60% da altura da janela": em telas baixas
+  // ela aparecia com o botão do hero ainda à vista, e em telas altas
+  // demorava a aparecer depois que ele já tinha saído.
+  // "Inteiro na tela" e não "encostou na tela": no limiar de um pixel a
+  // pílula piscava ao entrar e sair durante a rolagem.
+  const atualizarWa = () => {
+    if (!heroCta) {
+      waFixed.classList.add('is-visible');
+      return;
+    }
+    const r = heroCta.getBoundingClientRect();
+    const inteiroNaTela = r.top >= 0 && r.bottom <= window.innerHeight;
+    waFixed.classList.toggle('is-visible', !inteiroNaTela);
+  };
+
   const onScroll = () => {
-    const y = window.scrollY;
-    header.classList.toggle('is-stuck', y > 24);
-    waFloat.classList.toggle('is-visible', y > window.innerHeight * 0.6);
+    header.classList.toggle('is-stuck', window.scrollY > 24);
+    atualizarWa();
     ticking = false;
   };
 
@@ -65,7 +102,20 @@
       requestAnimationFrame(onScroll);
     }
   }, { passive: true });
+  window.addEventListener('resize', onScroll);
+
+  // O espaço reservado no fim da página só existe junto com a pílula, e a
+  // pílula só existe com JS. Sem script, nada de faixa morta no rodapé.
+  document.body.classList.add('has-wafixed');
   onScroll();
+
+  // Reavalia depois que as fontes assentam e depois do load. A primeira
+  // medida acontece com a fonte de fallback: quando a Bebas/Inter entra, o
+  // texto muda de altura e o CTA pode passar a nascer abaixo da dobra — sem
+  // isto a ação fixa só apareceria no primeiro gesto de rolagem, justamente
+  // em quem mais precisa dela (telas baixas).
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(onScroll);
+  window.addEventListener('load', onScroll);
 
   /* ---------- FAQ (accordion acessível) ---------- */
   $$('.faq__q').forEach((btn) => {

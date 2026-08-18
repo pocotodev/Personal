@@ -28,14 +28,16 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" href="assets/img/gym-hero.webp" media="(min-width: 900px)">
-  <link rel="preload" as="image" href="assets/img/huck-retrato.webp" media="(max-width: 899px)">
+  <!-- O retrato do Huck é o LCP em qualquer largura desde a repaginação: o
+       fundo fotográfico do hero saiu e a profundidade passou a ser
+       construída em CSS — mais rápido e sem lavar a imagem. -->
+  <link rel="preload" as="image" href="assets/img/huck-retrato.webp">
   <link
     href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet">
   <!-- ?v= força o navegador a buscar a versão nova em vez da que está em
        cache. Incrementar este número sempre que main.css ou main.js mudarem. -->
-  <link rel="stylesheet" href="assets/css/main.css?v=3">
+  <link rel="stylesheet" href="assets/css/main.css?v=5">
 
   <!-- Marca que o JS está ativo: as animações de entrada só valem nesse caso.
        Sem JS, o conteúdo é exibido normalmente. -->
@@ -62,14 +64,30 @@
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <!-- ============ HEADER ============ -->
-  <header class="site-header" id="site-header">
-    <div class="shell site-header__inner">
-      <a class="brand" href="#topo" aria-label="Huck Pereira, personal trainer — início">
-        <span class="brand__mark" aria-hidden="true">H</span>
-        <span class="brand__text">
-          <strong class="brand__name">Huck Pereira</strong>
-          <span class="brand__role">Personal Trainer</span>
+  <!-- O ícone do WhatsApp aparece em todas as ações do canal. Vive uma vez só
+       aqui e é referenciado por <use>: sem build step, evita repetir o mesmo
+       path em cada botão. -->
+  <svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0">
+    <symbol id="ico-wa" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z" />
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.85 9.85 0 0 0 12.04 2m0 1.67c2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.25 8.24a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.26-8.24" />
+    </symbol>
+  </svg>
+
+  <!-- ============ CABEÇALHO ============
+       Fixo e transparente sobre o hero, virando sólido a partir de 24px de
+       rolagem (classe .is-stuck, em main.js). Transparente porque o topo do
+       hero é uma faixa escura e limpa de propósito — o contraste do logo e
+       dos links está garantido nos dois estados.
+       No desktop a ação do topo é o contato com o número à vista: informa e
+       dá autoridade sem repetir o botão grande do hero. -->
+  <header class="masthead" id="site-header">
+    <div class="shell masthead__inner">
+      <a class="lockup" href="#topo" aria-label="Huck Pereira, personal trainer — início">
+        <span class="lockup__mark" aria-hidden="true">H</span>
+        <span class="lockup__text">
+          <strong class="lockup__name">Huck Pereira</strong>
+          <span class="lockup__role">Personal Trainer</span>
         </span>
       </a>
 
@@ -80,10 +98,22 @@
           <li><a href="#servicos">Serviços</a></li>
           <li><a href="#faq">Dúvidas</a></li>
         </ul>
-        <a class="btn btn--gold btn--sm nav__cta"
-          href="https://wa.me/5554999893323?text=Ol%C3%A1%2C%20Huck!%20Vi%20seu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20acompanhamento."
-          target="_blank" rel="noopener">Começar agora</a>
+
+        <!-- Ação do menu mobile. No desktop quem cumpre este papel é o
+             contato do cabeçalho, logo abaixo. -->
+        <a class="btn btn--wa nav__cta" href="https://wa.me/5554999893323?text=Ol%C3%A1%2C%20Huck!%20Vi%20seu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20acompanhamento." target="_blank" rel="noopener">
+          <svg class="ico-wa" aria-hidden="true"><use href="#ico-wa"></use></svg>
+          Falar com o Huck
+        </a>
       </nav>
+
+      <a class="masthead__contact" href="https://wa.me/5554999893323?text=Ol%C3%A1%2C%20Huck!%20Vi%20seu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20acompanhamento." target="_blank" rel="noopener">
+        <svg class="ico-wa" aria-hidden="true"><use href="#ico-wa"></use></svg>
+        <span class="masthead__contact-text">
+          <em>WhatsApp</em>
+          <strong>(54) 99989-3323</strong>
+        </span>
+      </a>
 
       <button class="burger" id="burger" type="button" aria-label="Abrir menu" aria-expanded="false"
         aria-controls="nav">
@@ -95,64 +125,85 @@
 
   <main id="conteudo">
 
-    <!-- ============ HERO ============ -->
+    <!-- ============ HERO ============
+         Composição editorial: no desktop, duas colunas (texto | retrato) com
+         um trilho de credenciais atravessando a base. No celular, sequência
+         retrato → texto → credenciais.
+         A ordem no DOM é a ordem de leitura (título antes da foto); no
+         celular o retrato sobe pelo `order` do CSS — ele não tem nada
+         focável, então mover só a ordem visual é seguro.
+         O fundo é 100% CSS: o antigo gym-hero.webp entrava a 50% de opacidade
+         sob um gradiente de 95% e virava borrão cinza, custando 34 KB. -->
     <section class="hero" id="topo">
-      <picture class="hero__bg">
-        <source media="(max-width: 899px)" srcset="assets/img/gym-hero-sm.webp">
-        <img src="assets/img/gym-hero.webp" alt="" fetchpriority="high" decoding="async" width="1920" height="1080">
-      </picture>
+      <div class="hero__ground" aria-hidden="true"></div>
 
-      <div class="shell hero__inner">
+      <div class="shell hero__grid">
+
         <div class="hero__copy">
-          <p class="kicker" data-reveal>
-            <span class="kicker__dot" aria-hidden="true"></span>
-            Personal Trainer · Marau-RS e online
+          <p class="hero__eyebrow" data-reveal>
+            <span class="hero__dot" aria-hidden="true"></span>
+            Marau-RS · presencial e online
           </p>
 
-          <h1 class="hero__title" data-reveal style="--d:.06s">
-            Treinar sozinho cansa.<br>
-            <em>Treinar com método</em><br>
-            transforma.
+          <!-- A frase do cliente foi mantida palavra por palavra; mudou a
+               hierarquia. Antes eram três linhas do mesmo tamanho, sem foco:
+               agora a primeira parte abre e a segunda carrega o peso. -->
+          <p class="hero__pre" data-reveal style="--d:.04s">Treinar sozinho cansa.</p>
+
+          <h1 class="hero__title" data-reveal style="--d:.08s">
+            Treinar com <em>método</em> transforma.
           </h1>
 
           <p class="hero__lead" data-reveal style="--d:.12s">
-            Sou o Huck. Ajudo pessoas a saírem do treino solto e sem direção
-            para um acompanhamento estruturado — com plano, correção de execução
-            e ajustes conforme você evolui.
+            Sou o Huck. Ajudo você a trocar o treino solto por um acompanhamento
+            estruturado: plano sob medida, execução corrigida e ajustes conforme
+            você evolui.
           </p>
 
-          <div class="hero__actions" data-reveal style="--d:.18s">
-            <a class="btn btn--gold btn--lg"
-              href="https://wa.me/5554999893323?text=Ol%C3%A1%2C%20Huck!%20Vi%20seu%20site%20e%20quero%20come%C3%A7ar%20meu%20acompanhamento."
-              target="_blank" rel="noopener">
-              Quero começar meu acompanhamento
-              <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
-                <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
+          <!-- Sem data-reveal de propósito: a ação principal precisa estar
+               pintada no primeiro quadro, sem depender de animação. -->
+          <div class="hero__actions">
+            <a class="btn btn--wa btn--lg" id="hero-cta" href="https://wa.me/5554999893323?text=Ol%C3%A1%2C%20Huck!%20Vi%20seu%20site%20e%20quero%20come%C3%A7ar%20meu%20acompanhamento." target="_blank" rel="noopener"
+              aria-label="Falar com o Huck no WhatsApp">
+              <svg class="ico-wa" aria-hidden="true"><use href="#ico-wa"></use></svg>
+              Falar com o Huck
             </a>
-            <a class="btn btn--ghost btn--lg" href="#metodo">Ver como funciona</a>
+            <a class="btn btn--quiet" href="#metodo">Como funciona</a>
           </div>
 
+          <p class="hero__micro">Conversa inicial pelo WhatsApp · sem compromisso</p>
         </div>
 
-        <figure class="hero__figure" data-reveal style="--d:.2s">
-          <img src="assets/img/huck-retrato.webp" alt="Huck Pereira, personal trainer, na academia" width="720"
-            height="960" fetchpriority="high" decoding="async">
-          <figcaption class="hero__badge">
+        <figure class="hero__portrait" data-reveal style="--d:.16s">
+          <img src="assets/img/huck-retrato.webp"
+            alt="Huck Pereira, personal trainer, na academia onde atende em Marau-RS" width="720" height="960"
+            fetchpriority="high" decoding="async">
+          <figcaption class="hero__plate">
             <strong>Huck Pereira</strong>
             <span>Personal trainer formado</span>
           </figcaption>
         </figure>
 
-        <ul class="hero__proof" data-reveal style="--d:.24s">
-          <li>Tri-campeão de fisiculturismo <span>categoria master</span></li>
-          <li>Presencial em Marau-RS <span>ou online, de onde você estiver</span></li>
-          <li>Primeira conversa <span>sem compromisso</span></li>
+        <!-- Trilho de credenciais: apenas fatos verificáveis já presentes no
+             site. "Primeira conversa sem compromisso" saiu daqui — é apoio de
+             CTA, não credencial, e passou para a linha sob o botão. -->
+        <ul class="hero__creds" data-reveal style="--d:.2s">
+          <li>
+            <strong>Do iniciante ao avançado</strong>
+            <span>treino montado para o seu nível</span>
+          </li>
+          <li>
+            <strong>Tri-campeão de fisiculturismo</strong>
+            <span>categoria master</span>
+          </li>
+          <li>
+            <strong>Presencial e online</strong>
+            <span>Marau-RS ou de onde você estiver</span>
+          </li>
         </ul>
       </div>
 
-      <a class="hero__scroll" href="#para-quem" aria-label="Rolar para a próxima seção">
+      <a class="hero__cue" href="#para-quem" aria-label="Ir para a próxima seção">
         <span aria-hidden="true"></span>
       </a>
     </section>
@@ -592,19 +643,18 @@
     </div>
   </footer>
 
-  <!-- Botão flutuante WhatsApp -->
-  <a class="wa-float" id="wa-float"
-    href="https://wa.me/5554999893323?text=Ol%C3%A1%2C%20Huck!%20Vi%20seu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20acompanhamento."
-    target="_blank" rel="noopener" aria-label="Falar com o Huck no WhatsApp">
-    <svg aria-hidden="true" viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
-      <path
-        d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z" />
-      <path
-        d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.85 9.85 0 0 0 12.04 2m0 1.67c2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.25 8.24a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.26-8.24" />
-    </svg>
+  <!-- Ação fixa de WhatsApp — só no celular. No desktop o par "contato no
+       cabeçalho + CTA do hero" já cobre a ação, e um terceiro botão flutuante
+       seria repetição. Entra apenas quando o CTA do hero sai da tela
+       (main.js), some com o menu aberto e respeita a área segura do
+       aparelho. O aria-label repete o texto visível (WCAG 2.5.3). -->
+  <a class="wa-fixed" id="wa-float" href="https://wa.me/5554999893323?text=Ol%C3%A1%2C%20Huck!%20Vi%20seu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20acompanhamento." target="_blank" rel="noopener"
+    aria-label="Falar com o Huck">
+    <svg class="ico-wa" aria-hidden="true"><use href="#ico-wa"></use></svg>
+    <span>Falar com o Huck</span>
   </a>
 
-  <script src="assets/js/main.js?v=3" defer></script>
+  <script src="assets/js/main.js?v=5" defer></script>
 </body>
 
 </html>
