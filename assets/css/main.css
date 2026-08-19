@@ -843,25 +843,6 @@ html:not(.js) .hero {
 }
 
 /* ---- coluna de texto ---- */
-.hero__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: .6rem;
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--bone-300);
-}
-
-.hero__dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--green-300);
-  box-shadow: 0 0 0 4px var(--green-glow);
-}
-
 .hero__pre {
   margin-top: 1.1rem;
   font-family: var(--font-display);
@@ -886,6 +867,32 @@ html:not(.js) .hero {
 
 .hero__title em {
   font-style: normal;
+  color: var(--green-300);
+}
+
+/* Assinatura: nome em corpo de leitura e credenciais em versalete
+   espaçado, na cor de destaque — a mesma construção da referência, que usa
+   o nome do profissional seguido das especialidades. Aqui o verde faz o
+   papel do nude de lá. */
+.hero__signature {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  margin-top: 1.1rem;
+}
+
+.hero__signature strong {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--bone);
+}
+
+.hero__signature span {
+  font-size: .7rem;
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: .15em;
+  text-transform: uppercase;
   color: var(--green-300);
 }
 
@@ -921,56 +928,67 @@ html:not(.js) .hero {
   position: relative;
 }
 
+/* Cartão arredondado com sombra funda, não faixa em sangria: a foto passa a
+   ser um objeto pousado sobre o fundo, que é o que dá o ar editorial da
+   referência. O raio é menor que o dela (20px contra 26px) para não
+   amolecer demais a linguagem esportiva. */
 .hero__portrait img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 58% 15%;
+  border-radius: 20px;
   /* A parede amarela da academia é forte demais para um fundo escuro
      sóbrio: a dessaturação parcial a traz para um ocre discreto sem
      apagar o tom de pele. */
   filter: saturate(.68) contrast(1.06) brightness(.95);
+  box-shadow: 0 34px 70px -34px rgba(0, 0, 0, .95);
 }
 
-/* Véu inferior: garante o contraste da placa de nome e funde a foto com o
-   fundo do hero em vez de deixá-la recortada. */
+/* Véu inferior discreto: o selo tem fundo próprio, então aqui basta assentar
+   a base da foto para o cartão não terminar num corte seco. */
 .hero__portrait::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: linear-gradient(to top, rgba(7, 7, 9, .9) 0%,
-      rgba(7, 7, 9, .38) 26%, rgba(7, 7, 9, 0) 54%);
+  border-radius: 20px;
+  background: linear-gradient(to top, rgba(7, 7, 9, .55) 0%,
+      rgba(7, 7, 9, .12) 22%, rgba(7, 7, 9, 0) 42%);
 }
 
-.hero__plate {
+/* Selo flutuante pousado sobre a foto, como na referência. Lá é uma pílula
+   branca sobre foto clara; aqui é vidro escuro sobre foto escura, mesma
+   ideia de objeto solto com sombra própria. */
+.hero__badge {
   position: absolute;
-  left: 1.15rem;
-  right: 1.15rem;
-  bottom: 1.1rem;
+  left: .9rem;
+  bottom: .9rem;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: .12rem;
-  padding-top: .75rem;
-  border-top: 1px solid var(--green-line);
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .62rem 1rem;
+  border-radius: 12px;
+  background: rgba(10, 10, 12, .84);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, .13);
+  box-shadow: 0 12px 28px -14px rgba(0, 0, 0, .9);
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+  color: var(--bone);
 }
 
-.hero__plate strong {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-weight: 400;
-  letter-spacing: .07em;
-  text-transform: uppercase;
-  color: #fff;
-}
-
-.hero__plate span {
-  font-size: var(--fs-xs);
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--bone-300);
+.hero__badge-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--green-300);
+  box-shadow: 0 0 0 3px var(--green-glow);
 }
 
 /* ---- trilho de credenciais ---- */
@@ -1058,21 +1076,24 @@ html:not(.js) .hero {
    sangria de altura controlada: presença real do Huck sem espremer nem
    empurrar o CTA para longe. */
 @media (max-width: 899px) {
+
+  /* A foto deixou de ser faixa em sangria e virou cartão: proporção 4/5
+     preservada, limitada em altura para o texto abaixo não sumir da tela.
+     Quando o limite entra, o object-fit corta pelas bordas — nunca deforma. */
   .hero__portrait {
     order: -1;
-    margin-inline: calc(var(--pad-x) * -1);
-    height: clamp(250px, 40vh, 340px);
-    background: var(--ink-800);
   }
 
+  /* Sempre limitado pela LARGURA: com max-height a proporção escapava do
+     4/5 (chegava a 0,90 num 390px) e o recorte ia ficando mais quadrado
+     conforme a tela encurtava. Assim o cartão só encolhe, nunca achata. */
   .hero__portrait img {
+    aspect-ratio: 4 / 5;
+    height: auto;
+    max-height: none;
+    max-width: min(100%, 46vh);
+    margin-inline: auto;
     object-position: 58% 13%;
-  }
-
-  .hero__plate {
-    left: var(--pad-x);
-    right: var(--pad-x);
-    bottom: .9rem;
   }
 
   .hero__creds {
@@ -1090,8 +1111,22 @@ html:not(.js) .hero {
     gap: 1rem;
   }
 
-  .hero__portrait {
-    height: clamp(170px, 28vh, 230px);
+  /* Limita pela LARGURA, não pela altura: com max-height o cartão virava um
+     recorte 1,54 — paisagem tirada de um retrato, cortando o Huck no peito.
+     Assim o 4/5 se mantém e o cartão apenas encolhe, centralizado. */
+  .hero__portrait img {
+    max-height: none;
+    max-width: min(100%, 38vh);
+    margin-inline: auto;
+    object-position: 58% 12%;
+  }
+
+  /* Cartão estreito pede selo menor, senão ele ocupa a largura toda. */
+  .hero__badge {
+    left: .7rem;
+    bottom: .7rem;
+    padding: .5rem .8rem;
+    font-size: .72rem;
   }
 
   .hero__pre {
@@ -1115,19 +1150,12 @@ html:not(.js) .hero {
   .hero__portrait {
     margin-inline: auto;
     max-width: 420px;
-    height: auto;
-    aspect-ratio: 4 / 5;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
+    width: 100%;
   }
 
   .hero__portrait img {
+    max-height: none;
     object-position: 58% 16%;
-  }
-
-  .hero__plate {
-    left: 1.15rem;
-    right: 1.15rem;
   }
 
   .hero__copy,
@@ -1179,8 +1207,6 @@ html:not(.js) .hero {
     max-width: 440px;
     margin-left: auto;
     width: 100%;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
   }
 
   .hero__creds {

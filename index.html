@@ -37,7 +37,7 @@
     rel="stylesheet">
   <!-- ?v= força o navegador a buscar a versão nova em vez da que está em
        cache. Incrementar este número sempre que main.css ou main.js mudarem. -->
-  <link rel="stylesheet" href="assets/css/main.css?v=6">
+  <link rel="stylesheet" href="assets/css/main.css?v=9">
 
   <!-- Marca que o JS está ativo: as animações de entrada só valem nesse caso.
        Sem JS, o conteúdo é exibido normalmente. -->
@@ -140,10 +140,9 @@
       <div class="shell hero__grid">
 
         <div class="hero__copy">
-          <p class="hero__eyebrow" data-reveal>
-            <span class="hero__dot" aria-hidden="true"></span>
-            Marau-RS · presencial e online
-          </p>
+          <!-- O olho com a localização saiu daqui: essa informação passou a
+               viver no selo sobre a foto, como na referência. Repetir a
+               cidade duas vezes em 200px de tela era ruído. -->
 
           <!-- A frase do cliente foi mantida palavra por palavra; mudou a
                hierarquia. Antes eram três linhas do mesmo tamanho, sem foco:
@@ -153,6 +152,14 @@
           <h1 class="hero__title" data-reveal style="--d:.08s">
             Treinar com <em>método</em> transforma.
           </h1>
+
+          <!-- Assinatura: nome e credenciais logo abaixo do título, na mesma
+               construção da referência. É quem responde "quem está falando"
+               antes de o visitante chegar ao CTA. -->
+          <p class="hero__signature" data-reveal style="--d:.1s">
+            <strong>Huck Pereira</strong>
+            <span>Personal trainer formado • Tri-campeão categoria master</span>
+          </p>
 
           <p class="hero__lead" data-reveal style="--d:.12s">
             Sou o Huck. Ajudo você a trocar o treino solto por um acompanhamento
@@ -178,27 +185,33 @@
           <img src="assets/img/huck-retrato.webp"
             alt="Huck Pereira, personal trainer, na academia onde atende em Marau-RS" width="720" height="960"
             fetchpriority="high" decoding="async">
-          <figcaption class="hero__plate">
-            <strong>Huck Pereira</strong>
-            <span>Personal trainer formado</span>
+          <!-- Selo flutuante sobre a foto, como na referência: diz onde ele
+               atende sem ocupar uma linha de texto na composição. -->
+          <figcaption class="hero__badge">
+            <span class="hero__badge-dot" aria-hidden="true"></span>
+            Atende em Marau-RS e online
           </figcaption>
         </figure>
 
         <!-- Trilho de credenciais: apenas fatos verificáveis já presentes no
              site. "Primeira conversa sem compromisso" saiu daqui — é apoio de
              CTA, não credencial, e passou para a linha sob o botão. -->
+        <!-- Cada bloco do hero responde uma coisa diferente: o selo diz onde,
+             a assinatura diz quem, este trilho diz o que você recebe. As três
+             linhas são as etapas 02, 03 e 04 do método, mais abaixo na
+             página. -->
         <ul class="hero__creds" data-reveal style="--d:.2s">
           <li>
-            <strong>Do iniciante ao avançado</strong>
-            <span>treino montado para o seu nível</span>
+            <strong>Plano sob medida</strong>
+            <span>para o seu nível e a sua rotina</span>
           </li>
           <li>
-            <strong>Tri-campeão de fisiculturismo</strong>
-            <span>categoria master</span>
+            <strong>Execução orientada</strong>
+            <span>correção da técnica durante o treino</span>
           </li>
           <li>
-            <strong>Presencial e online</strong>
-            <span>Marau-RS ou de onde você estiver</span>
+            <strong>Ajustes contínuos</strong>
+            <span>o plano acompanha a sua evolução</span>
           </li>
         </ul>
       </div>
@@ -654,7 +667,7 @@
     <span>Falar com o Huck</span>
   </a>
 
-  <script src="assets/js/main.js?v=6" defer></script>
+  <script src="assets/js/main.js?v=9" defer></script>
 </body>
 
 </html>
