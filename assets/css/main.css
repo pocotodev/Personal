@@ -890,6 +890,21 @@ p {
   margin-top: 2rem;
 }
 
+/* No mobile a seção empilha e ocupa a largura toda, então o texto
+   alinhado à esquerda ficava deslocado em relação ao resto da página,
+   que já é centralizado. Vale só enquanto está empilhado — a partir de
+   900px volta ao alinhamento à esquerda, ao lado das fotos. */
+@media (max-width: 899px) {
+  .about__copy {
+    text-align: center;
+  }
+
+  .about__copy .lead,
+  .about__copy p {
+    margin-inline: auto;
+  }
+}
+
 @media (min-width: 900px) {
   .about {
     grid-template-columns: 1fr 1fr;
