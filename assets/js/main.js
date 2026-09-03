@@ -47,15 +47,12 @@
     if (e.matches) setMenu(false);
   });
 
-  /* ---------- Header ao rolar + botão flutuante ---------- */
-  const header = $('#site-header');
-  const waFloat = $('#wa-float');
+  /* ---------- Cabeçalho ao rolar ---------- */
+  const header = $('#masthead');
   let ticking = false;
 
   const onScroll = () => {
-    const y = window.scrollY;
-    header.classList.toggle('is-stuck', y > 24);
-    waFloat.classList.toggle('is-visible', y > window.innerHeight * 0.6);
+    header.classList.toggle('is-stuck', window.scrollY > 24);
     ticking = false;
   };
 
@@ -87,7 +84,7 @@
   });
 
   /* ---------- Reveal on scroll ---------- */
-  const reveals = $$('[data-reveal]');
+  const reveals = $$('[data-fade]');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const revealAll = () => reveals.forEach((el) => el.classList.add('is-in'));
@@ -110,7 +107,7 @@
     // o conteúdo aparece mesmo assim.
     window.addEventListener('load', () => {
       setTimeout(() => {
-        if (!document.querySelector('[data-reveal].is-in')) revealAll();
+        if (!document.querySelector('[data-fade].is-in')) revealAll();
       }, 1200);
     });
   }

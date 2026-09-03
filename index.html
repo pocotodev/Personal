@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0B0B0C">
+  <meta name="theme-color" content="#1A1A1A">
 
   <title>Huck Pereira — Personal Trainer em Marau-RS | Presencial e Online</title>
   <meta name="description"
-    content="Acompanhamento estruturado com Huck Pereira, personal trainer formado e tri-campeão de fisiculturismo. Treinos personalizados, presenciais em Marau-RS ou online. Primeira conversa sem compromisso.">
+    content="Acompanhamento estruturado em treinamento físico com Huck Pereira, personal trainer formado e tricampeão de fisiculturismo na categoria master. Atendimento presencial em Marau-RS e acompanhamento online.">
   <link rel="canonical" href="https://huckpersonal.com.br/">
 
   <meta property="og:type" content="website">
@@ -16,7 +16,7 @@
   <meta property="og:site_name" content="Huck Pereira — Personal Trainer">
   <meta property="og:title" content="Huck Pereira — Personal Trainer em Marau-RS">
   <meta property="og:description"
-    content="Acompanhamento estruturado para quem quer treinar com método e constância. Presencial em Marau-RS ou online.">
+    content="Método antes do esforço. Acompanhamento estruturado em treinamento físico, presencial em Marau-RS ou online.">
   <meta property="og:url" content="https://huckpersonal.com.br/">
   <meta property="og:image" content="https://huckpersonal.com.br/assets/img/og-image.jpg">
   <meta property="og:image:width" content="1200">
@@ -28,16 +28,15 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" href="assets/img/gym-hero.webp" media="(min-width: 900px)">
-  <link rel="preload" as="image" href="assets/img/huck-retrato.webp" media="(max-width: 899px)">
+  <link rel="preload" as="image" href="assets/img/huck-retrato.webp">
   <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
     rel="stylesheet">
   <!-- ?v= força o navegador a buscar a versão nova em vez da que está em
-       cache. Incrementar este número sempre que main.css ou main.js mudarem. -->
-  <link rel="stylesheet" href="assets/css/main.css?v=3">
+       cache. Incrementar sempre que main.css ou main.js mudarem. -->
+  <link rel="stylesheet" href="assets/css/main.css?v=4">
 
-  <!-- Marca que o JS está ativo: as animações de entrada só valem nesse caso.
+  <!-- Marca que o JS está ativo: o fade de entrada só vale nesse caso.
        Sem JS, o conteúdo é exibido normalmente. -->
   <script>document.documentElement.classList.add('js');</script>
 
@@ -47,7 +46,7 @@
     "@type": "HealthAndBeautyBusiness",
     "additionalType": "https://schema.org/SportsActivityLocation",
     "name": "Huck Pereira — Personal Trainer",
-    "description": "Personal trainer formado e tri-campeão de fisiculturismo na categoria master. Acompanhamento presencial em Marau-RS e online.",
+    "description": "Personal trainer formado e tricampeão de fisiculturismo na categoria master. Acompanhamento estruturado em treinamento físico, presencial em Marau-RS e online.",
     "url": "https://huckpersonal.com.br/",
     "image": "https://huckpersonal.com.br/assets/img/og-image.jpg",
     "telephone": "+5554999893323",
@@ -60,15 +59,15 @@
 </head>
 
 <body>
-  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 
-  <!-- ============ HEADER ============ -->
-  <header class="site-header" id="site-header">
-    <div class="shell site-header__inner">
+  <!-- ============ MASTHEAD ============ -->
+  <header class="masthead" id="masthead">
+    <div class="container masthead__inner">
       <a class="brand" href="#topo" aria-label="Huck Pereira, personal trainer — início">
-        <span class="brand__mark" aria-hidden="true">H</span>
+        <img class="brand__mark" src="assets/img/monograma.svg" alt="" width="120" height="120" aria-hidden="true">
         <span class="brand__text">
-          <strong class="brand__name">Huck Pereira</strong>
+          <span class="brand__name">Huck Pereira</span>
           <span class="brand__role">Personal Trainer</span>
         </span>
       </a>
@@ -76,13 +75,13 @@
       <nav class="nav" id="nav" aria-label="Navegação principal">
         <ul class="nav__list">
           <li><a href="#metodo">Método</a></li>
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#servicos">Serviços</a></li>
-          <li><a href="#faq">Dúvidas</a></li>
+          <li><a href="#profissional">O profissional</a></li>
+          <li><a href="#modalidades">Modalidades</a></li>
+          <li><a href="#questoes">Questões</a></li>
         </ul>
-        <a class="btn btn--gold btn--sm nav__cta"
-          href="https://wa.me/5554999893323?text=Ol%C3%A1%2C%20Huck!%20Vi%20seu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20acompanhamento."
-          target="_blank" rel="noopener">Começar agora</a>
+        <a class="btn btn--primary btn--sm nav__cta"
+          href="https://wa.me/5554999893323?text=Boa%20tarde.%20Vim%20pelo%20site%20e%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20o%20acompanhamento."
+          target="_blank" rel="noopener">Entrar em contato</a>
       </nav>
 
       <button class="burger" id="burger" type="button" aria-label="Abrir menu" aria-expanded="false"
@@ -97,514 +96,518 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero" id="topo">
-      <picture class="hero__bg">
-        <source media="(max-width: 899px)" srcset="assets/img/gym-hero-sm.webp">
-        <img src="assets/img/gym-hero.webp" alt="" fetchpriority="high" decoding="async" width="1920" height="1080">
-      </picture>
+      <div class="container hero__inner">
+        <p class="overline" data-fade>Personal Trainer · Marau-RS e atendimento online</p>
 
-      <div class="shell hero__inner">
-        <div class="hero__copy">
-          <p class="kicker" data-reveal>
-            <span class="kicker__dot" aria-hidden="true"></span>
-            Personal Trainer · Marau-RS e online
-          </p>
+        <h1 class="hero__title" data-fade>
+          Método antes<br>do <em>esforço</em>.
+        </h1>
 
-          <h1 class="hero__title" data-reveal style="--d:.06s">
-            Treinar sozinho cansa.<br>
-            <em>Treinar com método</em><br>
-            transforma.
-          </h1>
-
-          <p class="hero__lead" data-reveal style="--d:.12s">
-            Sou o Huck. Ajudo pessoas a saírem do treino solto e sem direção
-            para um acompanhamento estruturado — com plano, correção de execução
-            e ajustes conforme você evolui.
-          </p>
-
-          <div class="hero__actions" data-reveal style="--d:.18s">
-            <a class="btn btn--gold btn--lg"
-              href="https://wa.me/5554999893323?text=Ol%C3%A1%2C%20Huck!%20Vi%20seu%20site%20e%20quero%20come%C3%A7ar%20meu%20acompanhamento."
-              target="_blank" rel="noopener">
-              Quero começar meu acompanhamento
-              <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
-                <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </a>
-            <a class="btn btn--ghost btn--lg" href="#metodo">Ver como funciona</a>
-          </div>
-
+        <div class="ornament" aria-hidden="true" data-fade>
+          <span class="ornament__line"></span>
+          <span class="ornament__mark"></span>
+          <span class="ornament__line"></span>
         </div>
 
-        <figure class="hero__figure" data-reveal style="--d:.2s">
-          <img src="assets/img/huck-retrato.webp" alt="Huck Pereira, personal trainer, na academia" width="720"
-            height="960" fetchpriority="high" decoding="async">
-          <figcaption class="hero__badge">
-            <strong>Huck Pereira</strong>
-            <span>Personal trainer formado</span>
-          </figcaption>
-        </figure>
+        <p class="hero__lead" data-fade>
+          Acompanhamento estruturado em treinamento físico, conduzido por profissional
+          formado e tricampeão de fisiculturismo na categoria master. O treino é
+          planejado a partir do seu histórico, corrigido durante a execução e ajustado
+          conforme a sua evolução.
+        </p>
 
-        <ul class="hero__proof" data-reveal style="--d:.24s">
-          <li>Tri-campeão de fisiculturismo <span>categoria master</span></li>
-          <li>Presencial em Marau-RS <span>ou online, de onde você estiver</span></li>
-          <li>Primeira conversa <span>sem compromisso</span></li>
-        </ul>
+        <div class="hero__actions" data-fade>
+          <a class="btn btn--primary"
+            href="https://wa.me/5554999893323?text=Boa%20tarde.%20Gostaria%20de%20solicitar%20uma%20avalia%C3%A7%C3%A3o%20inicial."
+            target="_blank" rel="noopener">Solicitar avaliação inicial</a>
+          <a class="link-underline" href="#metodo">Conhecer o método</a>
+        </div>
       </div>
 
-      <a class="hero__scroll" href="#para-quem" aria-label="Rolar para a próxima seção">
-        <span aria-hidden="true"></span>
-      </a>
+      <figure class="hero__figure" data-fade>
+        <img src="assets/img/huck-retrato.webp" alt="Huck Pereira, personal trainer, em ambiente de treino"
+          width="720" height="960" fetchpriority="high" decoding="async">
+      </figure>
     </section>
 
-    <!-- ============ PROBLEMA ============ -->
-    <section class="section section--bone" id="para-quem">
-      <div class="shell">
-        <header class="sec-head" data-reveal>
-          <p class="eyebrow">Talvez você se reconheça aqui</p>
-          <h2 class="sec-title">O problema quase nunca é<br>falta de vontade</h2>
+    <!-- ============ CREDENCIAIS ============ -->
+    <section class="credentials" aria-label="Credenciais">
+      <div class="container">
+        <dl class="credentials__list">
+          <div class="credential" data-fade>
+            <dt>Formação</dt>
+            <dd>Personal trainer formado</dd>
+          </div>
+          <div class="credential" data-fade>
+            <dt>Competição</dt>
+            <dd>Tricampeão de fisiculturismo, categoria master</dd>
+          </div>
+          <div class="credential" data-fade>
+            <dt>Atendimento</dt>
+            <dd>Presencial em Marau-RS e online</dd>
+          </div>
+          <div class="credential" data-fade>
+            <dt>Avaliação inicial</dt>
+            <dd>Sem compromisso</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ DIAGNÓSTICO ============ -->
+    <section class="section" id="diagnostico">
+      <div class="container">
+        <header class="sec-head" data-fade>
+          <p class="overline">Diagnóstico</p>
+          <h2 class="sec-title">Por que o esforço<br>nem sempre vira resultado</h2>
+          <div class="ornament ornament--center" aria-hidden="true">
+            <span class="ornament__line"></span>
+            <span class="ornament__mark"></span>
+            <span class="ornament__line"></span>
+          </div>
           <p class="sec-lead">
-            Na maioria das vezes é falta de direção. Sem um plano que faça sentido para o seu
-            corpo e para a sua rotina, o esforço se dissolve — e a sensação é de estar sempre recomeçando.
+            Na maioria dos casos, a dificuldade não está na disposição de quem treina,
+            mas na ausência de um plano que considere o corpo, o histórico e a rotina
+            de cada pessoa.
           </p>
         </header>
 
-        <ul class="pains">
-          <li class="pain" data-reveal>
-            <span class="pain__num" aria-hidden="true">01</span>
-            <h3>Treinar sem saber se está certo</h3>
-            <p>A dúvida constante sobre execução, carga e postura — e o receio de se machucar
-              justamente no exercício que deveria ajudar.</p>
+        <ol class="issues">
+          <li class="issue" data-fade>
+            <h3>Execução sem verificação</h3>
+            <p>
+              Movimentos repetidos sem conferência técnica consolidam vícios de
+              postura e aumentam o risco de lesão precisamente no exercício que
+              deveria proteger.
+            </p>
           </li>
-          <li class="pain" data-reveal style="--d:.06s">
-            <span class="pain__num" aria-hidden="true">02</span>
-            <h3>Começar, parar, começar de novo</h3>
-            <p>A constância some depois das primeiras semanas. Sem alguém acompanhando,
-              qualquer semana cheia vira motivo para interromper.</p>
+          <li class="issue" data-fade>
+            <h3>Interrupções recorrentes</h3>
+            <p>
+              A constância costuma ceder após as primeiras semanas. Sem
+              acompanhamento, qualquer período de rotina mais intensa se converte
+              em motivo para interromper.
+            </p>
           </li>
-          <li class="pain" data-reveal style="--d:.12s">
-            <span class="pain__num" aria-hidden="true">03</span>
-            <h3>Esforço que não vira resultado</h3>
-            <p>Você aparece na academia, faz o que acha certo, mas o corpo não responde —
-              porque o estímulo não está organizado nem progride.</p>
+          <li class="issue" data-fade>
+            <h3>Estímulo sem progressão</h3>
+            <p>
+              O treino que não evolui deixa de gerar resposta. O empenho permanece,
+              o resultado estaciona, e a conclusão equivocada é de que o esforço
+              foi insuficiente.
+            </p>
           </li>
-          <li class="pain" data-reveal style="--d:.18s">
-            <span class="pain__num" aria-hidden="true">04</span>
-            <h3>Um treino genérico para um corpo único</h3>
-            <p>Planilha copiada, treino do amigo, vídeo da internet. Nada disso considera
-              seu histórico, suas limitações e o tempo que você realmente tem.</p>
+          <li class="issue" data-fade>
+            <h3>Planejamento genérico</h3>
+            <p>
+              Planilhas replicadas e roteiros obtidos na internet desconsideram
+              limitações, histórico de lesões e o tempo efetivamente disponível
+              para treinar.
+            </p>
           </li>
-        </ul>
+        </ol>
       </div>
     </section>
 
     <!-- ============ MÉTODO ============ -->
-    <section class="section section--ink" id="metodo">
-      <div class="shell">
-        <header class="sec-head sec-head--center" data-reveal>
-          <p class="eyebrow">Como funciona</p>
-          <h2 class="sec-title">Cinco etapas, uma direção clara</h2>
+    <section class="section section--dark" id="metodo">
+      <div class="container">
+        <header class="sec-head sec-head--center" data-fade>
+          <p class="overline">O método</p>
+          <h2 class="sec-title">Cinco etapas,<br>uma direção definida</h2>
+          <div class="ornament ornament--center" aria-hidden="true">
+            <span class="ornament__line"></span>
+            <span class="ornament__mark"></span>
+            <span class="ornament__line"></span>
+          </div>
           <p class="sec-lead">
-            Nada de fórmula pronta. O acompanhamento começa entendendo você e
-            segue se ajustando enquanto seu corpo responde.
+            O acompanhamento começa pelo entendimento do caso e permanece em
+            revisão enquanto o corpo responde ao estímulo.
           </p>
         </header>
 
-        <ol class="steps">
-          <li class="step" data-reveal>
-            <span class="step__num">01</span>
-            <div class="step__body">
-              <h3>Conversa inicial</h3>
-              <p>Sem compromisso. Entendo seu objetivo, sua rotina, seu histórico
-                e o que já tentou antes.</p>
+        <ol class="stages">
+          <li class="stage" data-fade>
+            <span class="stage__numeral" aria-hidden="true">I</span>
+            <div class="stage__body">
+              <h3>Avaliação inicial</h3>
+              <p>
+                Conversa sem compromisso para apurar objetivo, rotina, histórico de
+                treino e eventuais limitações.
+              </p>
             </div>
           </li>
-          <li class="step" data-reveal style="--d:.06s">
-            <span class="step__num">02</span>
-            <div class="step__body">
-              <h3>Plano sob medida</h3>
-              <p>Monto o treino a partir do seu nível — do iniciante ao avançado —
-                respeitando limitações e o tempo que você tem.</p>
+          <li class="stage" data-fade>
+            <span class="stage__numeral" aria-hidden="true">II</span>
+            <div class="stage__body">
+              <h3>Planejamento</h3>
+              <p>
+                Elaboração do plano de treino conforme o nível apurado, do iniciante
+                ao avançado, respeitando limitações e disponibilidade.
+              </p>
             </div>
           </li>
-          <li class="step" data-reveal style="--d:.12s">
-            <span class="step__num">03</span>
-            <div class="step__body">
-              <h3>Execução orientada</h3>
-              <p>Acompanhamento da técnica com correção durante o exercício.
-                É onde se ganha segurança e se evita lesão.</p>
+          <li class="stage" data-fade>
+            <span class="stage__numeral" aria-hidden="true">III</span>
+            <div class="stage__body">
+              <h3>Condução técnica</h3>
+              <p>
+                Orientação da execução com correção durante o exercício. É a etapa
+                que estabelece segurança e consolida o padrão de movimento.
+              </p>
             </div>
           </li>
-          <li class="step" data-reveal style="--d:.18s">
-            <span class="step__num">04</span>
-            <div class="step__body">
-              <h3>Ajustes contínuos</h3>
-              <p>O treino não fica parado. Conforme você evolui, o estímulo muda
-                para continuar gerando resposta.</p>
+          <li class="stage" data-fade>
+            <span class="stage__numeral" aria-hidden="true">IV</span>
+            <div class="stage__body">
+              <h3>Revisão periódica</h3>
+              <p>
+                O plano é reavaliado conforme a evolução, de modo que o estímulo
+                permaneça adequado e continue produzindo resposta.
+              </p>
             </div>
           </li>
-          <li class="step" data-reveal style="--d:.24s">
-            <span class="step__num">05</span>
-            <div class="step__body">
-              <h3>Constância</h3>
-              <p>A parte que quase ninguém sustenta sozinho. Estar acompanhado é o
-                que mantém o ritmo nos dias difíceis.</p>
+          <li class="stage" data-fade>
+            <span class="stage__numeral" aria-hidden="true">V</span>
+            <div class="stage__body">
+              <h3>Manutenção da constância</h3>
+              <p>
+                Acompanhamento contínuo, que é o que sustenta o ritmo nos períodos
+                em que a disciplina isolada não basta.
+              </p>
             </div>
           </li>
         </ol>
 
-        <div class="steps__cta" data-reveal>
-          <a class="btn btn--gold"
-            href="https://wa.me/5554999893323?text=Ol%C3%A1%2C%20Huck!%20Quero%20agendar%20a%20conversa%20inicial."
-            target="_blank" rel="noopener">Agendar a conversa inicial</a>
-          <span>Leva poucos minutos e não custa nada.</span>
+        <div class="section__cta" data-fade>
+          <a class="btn btn--outline"
+            href="https://wa.me/5554999893323?text=Boa%20tarde.%20Gostaria%20de%20agendar%20a%20avalia%C3%A7%C3%A3o%20inicial."
+            target="_blank" rel="noopener">Agendar avaliação inicial</a>
         </div>
       </div>
     </section>
 
-    <!-- ============ SOBRE / AUTORIDADE ============ -->
-    <section class="section section--bone" id="sobre">
-      <div class="shell about">
-        <div class="about__copy" data-reveal>
-          <p class="eyebrow">Quem vai te acompanhar</p>
+    <!-- ============ O PROFISSIONAL ============ -->
+    <section class="section" id="profissional">
+      <div class="container">
+        <header class="sec-head sec-head--center" data-fade>
+          <p class="overline">O profissional</p>
           <h2 class="sec-title">Huck Pereira</h2>
-          <p class="about__lead">
-            Personal trainer formado e tri-campeão de fisiculturismo na categoria master.
-          </p>
-          <p>
-            Antes de orientar treino, passei anos do outro lado: competindo, ajustando execução,
-            aprendendo na prática o que sustenta um resultado e o que só dá trabalho.
-            Essa vivência é o que trago para o seu acompanhamento — atenção à técnica,
-            leitura da evolução e paciência com o processo.
-          </p>
-          <p>
-            Trabalho com quem está começando agora e com quem já treina há tempo e quer
-            organizar o que está fazendo. O objetivo é sempre o mesmo: que você entenda
-            o próprio treino e consiga mantê-lo.
-          </p>
+          <div class="ornament ornament--center" aria-hidden="true">
+            <span class="ornament__line"></span>
+            <span class="ornament__mark"></span>
+            <span class="ornament__line"></span>
+          </div>
+        </header>
 
-          <dl class="facts">
-            <div class="fact">
-              <dt>Formação</dt>
-              <dd>Personal trainer formado</dd>
-            </div>
-            <div class="fact">
-              <dt>Competição</dt>
-              <dd>Tri-campeão · categoria master</dd>
-            </div>
-            <div class="fact">
-              <dt>Atendimento</dt>
-              <dd>Marau-RS e online</dd>
-            </div>
-          </dl>
+        <div class="profile">
+          <figure class="profile__portrait" data-fade>
+            <img src="assets/img/huck-palco.webp"
+              alt="Huck Pereira em apresentação no palco durante campeonato de fisiculturismo" width="640" height="960"
+              loading="lazy" decoding="async">
+          </figure>
+
+          <div class="profile__copy" data-fade>
+            <p class="profile__lead">
+              Personal trainer formado e tricampeão de fisiculturismo na categoria master.
+            </p>
+            <p>
+              Antes de orientar o treino de terceiros, foram anos do outro lado: em
+              competição, ajustando execução e apurando na prática o que sustenta um
+              resultado e o que apenas consome tempo. É essa vivência que fundamenta o
+              acompanhamento — atenção à técnica, leitura da evolução e paciência com
+              o processo.
+            </p>
+            <p>
+              O atendimento contempla tanto quem inicia agora quanto quem já treina há
+              tempo e pretende organizar o que vem fazendo. Em ambos os casos, o
+              objetivo é o mesmo: que o aluno compreenda o próprio treino e consiga
+              mantê-lo.
+            </p>
+          </div>
         </div>
 
-        <div class="gallery" data-reveal style="--d:.1s">
-          <figure class="gallery__item gallery__item--tall">
-            <img src="assets/img/huck-palco.webp" alt="Huck Pereira posando no palco durante campeonato de fisiculturismo"
-              width="640" height="960" loading="lazy" decoding="async">
-          </figure>
-          <figure class="gallery__item">
-            <img src="assets/img/huck-trofeu.webp" alt="Huck Pereira no pódio segurando o troféu e a filha no colo"
+        <div class="plates" data-fade>
+          <figure class="plate">
+            <img src="assets/img/huck-trofeu.webp" alt="Huck Pereira no pódio, com o troféu e a filha no colo"
               width="720" height="480" loading="lazy" decoding="async">
           </figure>
-          <figure class="gallery__item">
-            <img src="assets/img/huck-premiacao.webp" alt="Huck Pereira recebendo troféu em premiação"
-              width="720" height="404" loading="lazy" decoding="async">
+          <figure class="plate">
+            <img src="assets/img/huck-premiacao.webp" alt="Huck Pereira durante cerimônia de premiação" width="720"
+              height="404" loading="lazy" decoding="async">
           </figure>
         </div>
-      </div>
 
-      <div class="shell">
-        <aside class="meeting" data-reveal>
-          <figure class="meeting__img">
+        <aside class="note" data-fade>
+          <figure class="note__img">
             <img src="assets/img/huck-ronnie.webp" alt="Huck Pereira ao lado do fisiculturista Ronnie Coleman"
               width="720" height="1282" loading="lazy" decoding="async">
           </figure>
-          <div class="meeting__copy">
-            <p class="eyebrow">Bastidores</p>
-            <h3>Uma vida dentro do esporte</h3>
+          <div class="note__copy">
+            <p class="overline">Registro</p>
+            <h3>Convivência com o alto rendimento</h3>
             <p>
-              Encontro com Ronnie Coleman, oito vezes Mr. Olympia. Anos de palco, de bastidor
-              e de convivência com quem leva treino a sério — é essa bagagem que sustenta a
-              orientação que você recebe.
+              Encontro com Ronnie Coleman, oito vezes vencedor do Mr. Olympia. Anos de
+              palco, de bastidor e de convívio com quem trata o treino com seriedade
+              compõem a bagagem que fundamenta a orientação prestada.
             </p>
           </div>
         </aside>
       </div>
     </section>
 
-    <!-- ============ SERVIÇOS ============ -->
-    <section class="section section--ink" id="servicos">
-      <div class="shell">
-        <header class="sec-head sec-head--center" data-reveal>
-          <p class="eyebrow">Formas de treinar comigo</p>
-          <h2 class="sec-title">Escolha o formato<br>que cabe na sua rotina</h2>
+    <!-- ============ MODALIDADES ============ -->
+    <section class="section section--dark" id="modalidades">
+      <div class="container">
+        <header class="sec-head sec-head--center" data-fade>
+          <p class="overline">Modalidades</p>
+          <h2 class="sec-title">Duas formas<br>de acompanhamento</h2>
+          <div class="ornament ornament--center" aria-hidden="true">
+            <span class="ornament__line"></span>
+            <span class="ornament__mark"></span>
+            <span class="ornament__line"></span>
+          </div>
         </header>
 
-        <div class="plans">
-          <article class="plan" data-reveal>
-            <p class="plan__tag">Presencial · Marau-RS</p>
-            <h3 class="plan__title">Acompanhamento presencial</h3>
-            <p class="plan__for">Para quem quer alguém do lado corrigindo a execução em tempo real.</p>
-            <ul class="plan__list">
-              <li>Treino montado para o seu nível e objetivo</li>
-              <li>Correção de técnica durante o exercício</li>
-              <li>Frequência definida junto com você — normalmente de 2 a 5 vezes por semana</li>
-              <li>Ajuste do plano conforme a sua evolução</li>
+        <div class="modes">
+          <article class="mode" data-fade>
+            <p class="mode__tag">Presencial · Marau-RS</p>
+            <h3 class="mode__title">Acompanhamento presencial</h3>
+            <p class="mode__for">
+              Destinado a quem pretende contar com condução técnica durante a
+              execução do exercício.
+            </p>
+            <ul class="mode__list">
+              <li>Plano de treino elaborado conforme nível e objetivo</li>
+              <li>Correção da execução durante a sessão</li>
+              <li>Frequência definida em conjunto, usualmente de duas a cinco sessões semanais</li>
+              <li>Revisão do plano conforme a evolução apurada</li>
             </ul>
-            <p class="plan__why">Indicado se você quer segurança na execução desde o começo.</p>
-            <a class="btn btn--gold btn--block"
-              href="https://wa.me/5554999893323?text=Ol%C3%A1%2C%20Huck!%20Tenho%20interesse%20no%20acompanhamento%20presencial%20em%20Marau."
-              target="_blank" rel="noopener">Quero treinar presencialmente</a>
+            <a class="btn btn--outline btn--block"
+              href="https://wa.me/5554999893323?text=Boa%20tarde.%20Tenho%20interesse%20no%20acompanhamento%20presencial%20em%20Marau."
+              target="_blank" rel="noopener">Consultar disponibilidade</a>
           </article>
 
-          <article class="plan" data-reveal style="--d:.08s">
-            <p class="plan__tag">Online · de onde você estiver</p>
-            <h3 class="plan__title">Acompanhamento online</h3>
-            <p class="plan__for">Para quem treina em outra cidade, em outra academia ou em horários variáveis.</p>
-            <ul class="plan__list">
-              <li>Plano de treino personalizado, montado a partir da sua realidade</li>
+          <article class="mode" data-fade>
+            <p class="mode__tag">Online · demais localidades</p>
+            <h3 class="mode__title">Acompanhamento online</h3>
+            <p class="mode__for">
+              Destinado a quem treina em outra cidade, em academia própria ou em
+              horários variáveis.
+            </p>
+            <ul class="mode__list">
+              <li>Plano de treino elaborado a partir da sua realidade</li>
               <li>Orientação de execução à distância</li>
-              <li>Adaptação ao que você tem disponível para treinar</li>
-              <li>Revisões periódicas do plano conforme os resultados</li>
+              <li>Adaptação aos equipamentos efetivamente disponíveis</li>
+              <li>Revisões periódicas conforme os resultados</li>
             </ul>
-            <p class="plan__why">Indicado se você tem autonomia na academia, mas quer direção profissional.</p>
-            <a class="btn btn--ghost btn--block"
-              href="https://wa.me/5554999893323?text=Ol%C3%A1%2C%20Huck!%20Tenho%20interesse%20no%20acompanhamento%20online."
-              target="_blank" rel="noopener">Quero acompanhamento online</a>
+            <a class="btn btn--outline btn--block"
+              href="https://wa.me/5554999893323?text=Boa%20tarde.%20Tenho%20interesse%20no%20acompanhamento%20online."
+              target="_blank" rel="noopener">Consultar disponibilidade</a>
           </article>
         </div>
 
-        <p class="plans__note" data-reveal>
-          Não sabe qual formato faz mais sentido? Me chame e a gente decide junto na conversa inicial.
+        <p class="modes__note" data-fade>
+          Havendo dúvida quanto à modalidade adequada, a definição é feita em conjunto
+          durante a avaliação inicial.
         </p>
       </div>
     </section>
 
-    <!-- ============ FAQ ============ -->
-    <section class="section section--ink" id="faq">
-      <div class="shell shell--narrow">
-        <header class="sec-head sec-head--center" data-reveal>
-          <p class="eyebrow">Antes de começar</p>
-          <h2 class="sec-title">Dúvidas frequentes</h2>
+    <!-- ============ QUESTÕES FREQUENTES ============ -->
+    <section class="section" id="questoes">
+      <div class="container container--narrow">
+        <header class="sec-head sec-head--center" data-fade>
+          <p class="overline">Esclarecimentos</p>
+          <h2 class="sec-title">Questões frequentes</h2>
+          <div class="ornament ornament--center" aria-hidden="true">
+            <span class="ornament__line"></span>
+            <span class="ornament__mark"></span>
+            <span class="ornament__line"></span>
+          </div>
         </header>
 
-        <div class="faq" data-reveal>
+        <div class="faq" data-fade>
           <div class="faq__item">
             <h3>
-              <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-1">
-                <span>Preciso já ter experiência com treino?</span>
+              <button type="button" class="faq__q" aria-expanded="false" aria-controls="q1">
+                <span>É necessária experiência prévia com treino?</span>
                 <span class="faq__icon" aria-hidden="true"></span>
               </button>
             </h3>
-            <div class="faq__a" id="faq-1" role="region">
-              <p>Não. Os treinos são montados para o seu nível, do iniciante ao avançado.
-                Se você nunca pisou numa academia, começamos pelo básico bem-feito.</p>
+            <div class="faq__a" id="q1" role="region">
+              <p>
+                Não. O plano é elaborado conforme o nível apurado na avaliação inicial,
+                do iniciante ao avançado. Não havendo experiência anterior, a condução
+                começa pelos fundamentos.
+              </p>
             </div>
           </div>
 
           <div class="faq__item">
             <h3>
-              <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-2">
+              <button type="button" class="faq__q" aria-expanded="false" aria-controls="q2">
                 <span>O acompanhamento é presencial ou online?</span>
                 <span class="faq__icon" aria-hidden="true"></span>
               </button>
             </h3>
-            <div class="faq__a" id="faq-2" role="region">
-              <p>Os dois. Presencial para quem está em Marau-RS e região, e online com
-                acompanhamento completo para quem treina em outro lugar.</p>
+            <div class="faq__a" id="q2" role="region">
+              <p>
+                Ambas as modalidades estão disponíveis. O atendimento presencial abrange
+                Marau-RS e região; o acompanhamento online atende demais localidades.
+              </p>
             </div>
           </div>
 
           <div class="faq__item">
             <h3>
-              <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-3">
-                <span>Como funciona a primeira conversa?</span>
+              <button type="button" class="faq__q" aria-expanded="false" aria-controls="q3">
+                <span>Como se dá a avaliação inicial?</span>
                 <span class="faq__icon" aria-hidden="true"></span>
               </button>
             </h3>
-            <div class="faq__a" id="faq-3" role="region">
-              <p>É um bate-papo para entender seus objetivos, suas limitações e sua rotina —
-                sem compromisso. A partir dali eu monto a proposta de acompanhamento.</p>
+            <div class="faq__a" id="q3" role="region">
+              <p>
+                Trata-se de uma conversa destinada a apurar objetivos, limitações e
+                rotina, sem compromisso. A partir dela é formulada a proposta de
+                acompanhamento.
+              </p>
             </div>
           </div>
 
           <div class="faq__item">
             <h3>
-              <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-4">
-                <span>Qual é a frequência dos treinos?</span>
+              <button type="button" class="faq__q" aria-expanded="false" aria-controls="q4">
+                <span>Qual a frequência das sessões?</span>
                 <span class="faq__icon" aria-hidden="true"></span>
               </button>
             </h3>
-            <div class="faq__a" id="faq-4" role="region">
-              <p>Definimos juntos, a partir do seu objetivo e do tempo que você tem.
-                Os planos mais comuns ficam entre 2 e 5 vezes por semana.</p>
+            <div class="faq__a" id="q4" role="region">
+              <p>
+                A frequência é definida em conjunto, conforme o objetivo e a
+                disponibilidade. Os planos mais usuais compreendem de duas a cinco
+                sessões semanais.
+              </p>
             </div>
           </div>
 
           <div class="faq__item">
             <h3>
-              <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-5">
-                <span>O treino é mesmo personalizado?</span>
+              <button type="button" class="faq__q" aria-expanded="false" aria-controls="q5">
+                <span>O plano de treino é individualizado?</span>
                 <span class="faq__icon" aria-hidden="true"></span>
               </button>
             </h3>
-            <div class="faq__a" id="faq-5" role="region">
-              <p>Sim. O plano parte do seu nível, do seu histórico e das suas limitações —
-                e vai sendo ajustado conforme você evolui. Não é planilha pronta.</p>
+            <div class="faq__a" id="q5" role="region">
+              <p>
+                Sim. O plano considera nível, histórico e limitações do aluno, e é
+                revisado conforme a evolução. Não se trata de roteiro padronizado.
+              </p>
             </div>
           </div>
 
           <div class="faq__item">
             <h3>
-              <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-6">
-                <span>Em quanto tempo vejo resultados?</span>
+              <button type="button" class="faq__q" aria-expanded="false" aria-controls="q6">
+                <span>Em quanto tempo se observam resultados?</span>
                 <span class="faq__icon" aria-hidden="true"></span>
               </button>
             </h3>
-            <div class="faq__a" id="faq-6" role="region">
-              <p>Varia bastante de pessoa para pessoa — depende do ponto de partida, da
-                constância e da rotina de cada um. Com dedicação, muitos alunos relatam
-                perceber mudanças entre 4 e 8 semanas.</p>
+            <div class="faq__a" id="q6" role="region">
+              <p>
+                O prazo varia conforme o ponto de partida, a constância e a rotina de
+                cada pessoa. Não há resultado garantido, e a orientação prestada não
+                substitui avaliação médica.
+              </p>
             </div>
           </div>
 
           <div class="faq__item">
             <h3>
-              <button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-7">
-                <span>Como faço para começar?</span>
+              <button type="button" class="faq__q" aria-expanded="false" aria-controls="q7">
+                <span>Como iniciar o acompanhamento?</span>
                 <span class="faq__icon" aria-hidden="true"></span>
               </button>
             </h3>
-            <div class="faq__a" id="faq-7" role="region">
-              <p>Me chame no WhatsApp. A gente marca a conversa inicial, eu entendo o seu
-                caso e te explico como seria o acompanhamento na prática.</p>
+            <div class="faq__a" id="q7" role="region">
+              <p>
+                Por meio de contato pelo WhatsApp, quando é agendada a avaliação
+                inicial e apresentado o funcionamento do acompanhamento.
+              </p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ CTA FINAL ============ -->
-    <section class="cta-final">
-      <div class="shell cta-final__inner" data-reveal>
-        <p class="eyebrow">Próximo passo</p>
-        <h2 class="cta-final__title">Agora você já sabe<br>como funciona</h2>
-        <p class="cta-final__lead">
-          Se fez sentido para você, o próximo passo é simples: uma conversa,
-          sem compromisso, para eu entender o seu caso.
+    <!-- ============ CONTATO ============ -->
+    <section class="closing" id="contato">
+      <div class="container closing__inner" data-fade>
+        <p class="overline">Contato</p>
+        <h2 class="closing__title">Solicite a<br>avaliação inicial</h2>
+        <div class="ornament ornament--center ornament--light" aria-hidden="true">
+          <span class="ornament__line"></span>
+          <span class="ornament__mark"></span>
+          <span class="ornament__line"></span>
+        </div>
+        <p class="closing__lead">
+          A avaliação é uma conversa sem compromisso, destinada a apurar o seu caso
+          e definir se o acompanhamento é adequado ao seu objetivo.
         </p>
-        <a class="btn btn--gold btn--lg"
-          href="https://wa.me/5554999893323?text=Ol%C3%A1%2C%20Huck!%20Vi%20seu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20acompanhamento."
-          target="_blank" rel="noopener">
-          Falar com o Huck no WhatsApp
-          <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
-            <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </a>
-        <p class="cta-final__note">Resposta pelo WhatsApp · Marau-RS e atendimento online</p>
+        <a class="btn btn--gold"
+          href="https://wa.me/5554999893323?text=Boa%20tarde.%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20a%20avalia%C3%A7%C3%A3o%20inicial."
+          target="_blank" rel="noopener">Solicitar avaliação inicial</a>
+        <p class="closing__note">Atendimento presencial em Marau-RS e acompanhamento online</p>
       </div>
     </section>
   </main>
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="site-footer">
-    <div class="shell site-footer__inner">
-      <div class="site-footer__brand">
-        <a class="brand brand--footer" href="#topo">
-          <span class="brand__mark" aria-hidden="true">H</span>
-          <span class="brand__text">
-            <strong class="brand__name">Huck Pereira</strong>
-            <span class="brand__role">Personal Trainer</span>
-          </span>
-        </a>
-        <p>Acompanhamento estruturado para quem quer treinar com método e constância.</p>
+  <!-- ============ RODAPÉ ============ -->
+  <footer class="colophon">
+    <div class="container colophon__inner">
+      <div class="colophon__brand">
+        <img class="colophon__mark" src="assets/img/monograma.svg" alt="" width="120" height="120" aria-hidden="true">
+        <p class="colophon__name">Huck Pereira</p>
+        <p class="colophon__role">Personal Trainer</p>
       </div>
 
-      <nav class="site-footer__col" aria-label="Navegação do rodapé">
+      <nav class="colophon__col" aria-label="Navegação do rodapé">
         <h2>Navegação</h2>
         <ul>
-          <li><a href="#topo">Início</a></li>
-          <li><a href="#metodo">Método</a></li>
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#servicos">Serviços</a></li>
-          <li><a href="#faq">Dúvidas</a></li>
+          <li><a class="link-underline" href="#topo">Início</a></li>
+          <li><a class="link-underline" href="#diagnostico">Diagnóstico</a></li>
+          <li><a class="link-underline" href="#metodo">Método</a></li>
+          <li><a class="link-underline" href="#profissional">O profissional</a></li>
+          <li><a class="link-underline" href="#modalidades">Modalidades</a></li>
+          <li><a class="link-underline" href="#questoes">Questões</a></li>
         </ul>
       </nav>
 
-      <div class="site-footer__col">
+      <div class="colophon__col">
         <h2>Contato</h2>
-        <ul class="contact">
-          <li>
-            <a href="https://wa.me/5554999893323" target="_blank" rel="noopener">
-              <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
-                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12.81.37 1.6.72 2.34a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c.74.35 1.53.6 2.34.72a2 2 0 0 1 1.72 2z" />
-              </svg>
-              (54) 99989-3323
-            </a>
-          </li>
-          <li>
-            <a href="mailto:huckjjpersonal@hotmail.com">
-              <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
-                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="4" width="20" height="16" rx="2" />
-                <path d="m22 7-10 6L2 7" />
-              </svg>
-              huckjjpersonal@hotmail.com
-            </a>
-          </li>
-          <li>
-            <a href="https://www.instagram.com/pereirahuckpersonal/" target="_blank" rel="noopener">
-              <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
-                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" />
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-              </svg>
-              @pereirahuckpersonal
-            </a>
-          </li>
-          <li>
-            <a href="https://www.google.com/maps/place/Marau+-+RS" target="_blank" rel="noopener">
-              <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
-                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 21s8-6.5 8-11a8 8 0 1 0-16 0c0 4.5 8 11 8 11z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              Marau-RS
-            </a>
-          </li>
+        <ul>
+          <li><a class="link-underline" href="https://wa.me/5554999893323" target="_blank" rel="noopener">(54)
+              99989-3323</a></li>
+          <li><a class="link-underline" href="mailto:huckjjpersonal@hotmail.com">huckjjpersonal@hotmail.com</a></li>
+          <li><a class="link-underline" href="https://www.instagram.com/pereirahuckpersonal/" target="_blank"
+              rel="noopener">@pereirahuckpersonal</a></li>
+          <li><a class="link-underline" href="https://www.google.com/maps/place/Marau+-+RS" target="_blank"
+              rel="noopener">Marau-RS</a></li>
         </ul>
       </div>
     </div>
 
-    <div class="shell site-footer__bottom">
+    <div class="container colophon__base">
       <p>© <span id="year">2026</span> Huck Pereira. Todos os direitos reservados.</p>
       <ul>
-        <li><a href="politica.html">Política de privacidade</a></li>
-        <li><a href="termosDeUso.html">Termos de uso</a></li>
+        <li><a class="link-underline" href="politica.html">Política de privacidade</a></li>
+        <li><a class="link-underline" href="termosDeUso.html">Termos de uso</a></li>
         <li><span>Desenvolvido por Brian Gomes Pereira</span></li>
       </ul>
     </div>
   </footer>
 
-  <!-- Botão flutuante WhatsApp -->
-  <a class="wa-float" id="wa-float"
-    href="https://wa.me/5554999893323?text=Ol%C3%A1%2C%20Huck!%20Vi%20seu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20acompanhamento."
-    target="_blank" rel="noopener" aria-label="Falar com o Huck no WhatsApp">
-    <svg aria-hidden="true" viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
-      <path
-        d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.86 1.21 3.06c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z" />
-      <path
-        d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.85 9.85 0 0 0 12.04 2m0 1.67c2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.25 8.24a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.26-8.24" />
-    </svg>
-  </a>
-
-  <script src="assets/js/main.js?v=3" defer></script>
+  <script src="assets/js/main.js?v=4" defer></script>
 </body>
 
 </html>

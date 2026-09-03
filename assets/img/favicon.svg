@@ -1,4 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="10" fill="#0B0B0C"/>
-  <path d="M18 16h7v13h14V16h7v32h-7V35H25v13h-7z" fill="#C9A227"/>
+  <rect width="64" height="64" fill="#1A1A1A"/>
+  <rect x="4.5" y="4.5" width="55" height="55" fill="none" stroke="#D19443" stroke-width="1.5"/>
+  <text x="32" y="45" text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="36" font-weight="400" fill="#D19443">H</text>
 </svg>

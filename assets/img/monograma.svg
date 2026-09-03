@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Monograma HP">
+  <!-- Moldura dupla: regra fina externa e interna, código clássico de selo -->
+  <rect x="2.5" y="2.5" width="115" height="115" fill="none" stroke="#D19443" stroke-width="1"/>
+  <rect x="8.5" y="8.5" width="103" height="103" fill="none" stroke="#D19443" stroke-width="0.5" opacity="0.55"/>
+  <!-- Losango ornamental no topo e na base -->
+  <path d="M60 12.5 63.5 16 60 19.5 56.5 16Z" fill="#D19443"/>
+  <path d="M60 100.5 63.5 104 60 107.5 56.5 104Z" fill="#D19443"/>
+  <!-- Iniciais em serifada -->
+  <text x="60" y="72" text-anchor="middle"
+        font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+        font-size="46" font-weight="400" letter-spacing="1" fill="#D19443">HP</text>
+</svg>
