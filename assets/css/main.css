@@ -886,6 +886,26 @@ p {
   margin-top: 1rem;
 }
 
+/* Selo de registro profissional — discreto, mas legível.
+   Exigido na publicidade de profissionais de educação física. */
+.cref {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1.25rem;
+  padding: .35rem .85rem;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: var(--brand-text);
+  border: 1px solid rgba(209, 148, 67, .55);
+  border-radius: var(--r-pill);
+}
+
+.cref--foot {
+  margin-top: 1rem;
+  color: var(--brand);
+}
+
 .about__copy .btn {
   margin-top: 2rem;
 }

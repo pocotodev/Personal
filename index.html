@@ -34,7 +34,7 @@
     rel="stylesheet">
   <!-- ?v= força o navegador a buscar a versão nova em vez da que está em
        cache. Incrementar sempre que main.css ou main.js mudarem. -->
-  <link rel="stylesheet" href="assets/css/main.css?v=6">
+  <link rel="stylesheet" href="assets/css/main.css?v=7">
 
   <!-- Marca que o JS está ativo: as animações de entrada só valem nesse
        caso. Sem JS, o conteúdo aparece normalmente. -->
@@ -46,7 +46,13 @@
     "@type": "HealthAndBeautyBusiness",
     "additionalType": "https://schema.org/SportsActivityLocation",
     "name": "Huck Pereira — Personal Trainer",
-    "description": "Personal trainer formado e tricampeão de fisiculturismo na categoria master. Acompanhamento presencial em Marau-RS e online.",
+    "description": "Personal trainer formado, CREF 022765/RS, tricampeão de fisiculturismo na categoria master. Acompanhamento presencial em Marau-RS e online.",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "CREF",
+      "name": "Registro no Conselho Regional de Educação Física",
+      "value": "022765/RS"
+    },
     "url": "https://huckpersonal.com.br/",
     "image": "https://huckpersonal.com.br/assets/img/og-image.jpg",
     "telephone": "+5554999893323",
@@ -131,7 +137,7 @@
             height="960" fetchpriority="high" decoding="async">
           <figcaption class="hero__chip">
             <strong>Huck Pereira</strong>
-            <span>Personal trainer formado</span>
+            <span>Personal trainer · CREF 022765/RS</span>
           </figcaption>
         </figure>
       </div>
@@ -310,6 +316,10 @@
           <p class="about__hi">
             Personal trainer formado e tricampeão de fisiculturismo na categoria master.
           </p>
+
+          <!-- Registro profissional. Exigido na publicidade de profissionais de
+               educação física (CONFEF, Resolução nº 348/2019). -->
+          <p class="cref">CREF 022765/RS</p>
           <p>
             Antes de orientar treino dos outros, passei anos do outro lado: competindo,
             ajustando execução, aprendendo na prática o que sustenta resultado e o que
@@ -510,6 +520,7 @@
           <span class="brand__name">Huck<span>Pereira</span></span>
         </a>
         <p>Treino com método, pra quem quer parar de recomeçar do zero.</p>
+        <p class="cref cref--foot">CREF 022765/RS</p>
       </div>
 
       <nav class="foot__col" aria-label="Navegação do rodapé">
@@ -594,7 +605,7 @@
     </svg>
   </a>
 
-  <script src="assets/js/main.js?v=6" defer></script>
+  <script src="assets/js/main.js?v=7" defer></script>
 </body>
 
 </html>
