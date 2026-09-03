@@ -48,7 +48,7 @@
   });
 
   /* ---------- Header ao rolar + botão flutuante ---------- */
-  const header = $('#site-header');
+  const header = $('#topbar');
   const waFloat = $('#wa-float');
   let ticking = false;
 
@@ -87,7 +87,7 @@
   });
 
   /* ---------- Reveal on scroll ---------- */
-  const reveals = $$('[data-reveal]');
+  const reveals = $$('[data-anim]');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const revealAll = () => reveals.forEach((el) => el.classList.add('is-in'));
@@ -110,7 +110,7 @@
     // o conteúdo aparece mesmo assim.
     window.addEventListener('load', () => {
       setTimeout(() => {
-        if (!document.querySelector('[data-reveal].is-in')) revealAll();
+        if (!document.querySelector('[data-anim].is-in')) revealAll();
       }, 1200);
     });
   }
