@@ -1,34 +1,40 @@
 /* =========================================================
    HUCK PEREIRA — PERSONAL TRAINER
    Sistema visual: MODERNO & VIBRANTE
-   Lima elétrico sobre preto pleno · magenta secundário
+   Dourado quente sobre preto quente · paleta do cliente
    Ordem: tokens · reset · layout · tipografia · componentes ·
           seções · rodapé · movimento
    ========================================================= */
 
 /* ---------- 1. TOKENS ---------- */
 :root {
-  /* Marca */
-  --lime: #c7f51e;
-  --lime-deep: #a8d40f;
-  /* secundária complementar, usada com muita parcimônia */
-  --magenta: #ff2d78;
+  /* Paleta da marca — dourado quente */
+  --brand: #d19443;
+  --brand-soft: #ecbb7b;
+  --accent: #f4aa46;
 
-  /* Fundos: preto pleno ou branco. Nunca cinza médio. */
-  --black: #0a0a0a;
-  --black-2: #131313;
-  --black-3: #1c1c1c;
-  --white: #ffffff;
+  /* Dourado só rende 2.53:1 sobre o fundo claro, o que reprova no AA.
+     Este tom mantém a família e chega a 5.72:1 — usado sempre que o
+     acento vira TEXTO sobre fundo claro. Sobre superfície escura o
+     dourado original já rende 6.92:1 e é usado direto. */
+  --brand-text: #8a5a1a;
+
+  /* Superfícies. A paleta não trazia cor escura, então ela é derivada
+     do próprio --text: um preto quente que mantém a temperatura. */
+  --ink: #1b150e;
+  --ink-2: #241d14;
+  --ink-3: #2e251a;
+  --paper: #fdfbf9;
 
   /* Texto */
-  --on-black: #f4f4f4;
-  --on-black-mut: #a3a3a3;
-  --on-white: #0a0a0a;
-  --on-white-mut: #5c5c5c;
+  --on-ink: #f7f1e8;
+  --on-ink-mut: #b5a894;
+  --on-paper: #1b150e;
+  --on-paper-mut: #6b6154;
 
   /* Linhas */
-  --line-dark: rgba(255, 255, 255, .12);
-  --line-light: rgba(10, 10, 10, .1);
+  --line-dark: rgba(247, 241, 232, .14);
+  --line-light: rgba(27, 21, 14, .12);
 
   /* Tipografia */
   --display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
@@ -53,8 +59,8 @@
   --ease: cubic-bezier(.22, .61, .36, 1);
 
   /* Sombras coloridas, nunca pretas */
-  --sh-lime: 0 8px 26px -10px rgba(199, 245, 30, .5);
-  --sh-card: 0 10px 30px -14px rgba(199, 245, 30, .22);
+  --sh-brand: 0 8px 26px -10px rgba(209, 148, 67, .55);
+  --sh-card: 0 10px 30px -14px rgba(209, 148, 67, .28);
 
   --bar-h: 72px;
 }
@@ -80,8 +86,8 @@ body {
   font-family: var(--body);
   font-size: var(--fs-body);
   line-height: 1.65;
-  color: var(--on-white);
-  background: var(--white);
+  color: var(--on-paper);
+  background: var(--paper);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -131,7 +137,7 @@ p {
 }
 
 :focus-visible {
-  outline: 3px solid var(--lime);
+  outline: 3px solid var(--brand);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -143,8 +149,8 @@ p {
   transform: translate(-50%, -150%);
   z-index: 200;
   padding: .8rem 1.4rem;
-  background: var(--lime);
-  color: var(--black);
+  background: var(--brand);
+  color: var(--ink);
   font-weight: 600;
   border-radius: 0 0 12px 12px;
   transition: transform .2s var(--ease);
@@ -172,13 +178,13 @@ p {
 
 /* full-bleed alternado, para criar ritmo entre seções */
 .section--dark {
-  background: var(--black);
-  color: var(--on-black);
+  background: var(--ink);
+  color: var(--on-ink);
 }
 
-.section--lime {
-  background: var(--lime);
-  color: var(--black);
+.section--brand {
+  background: var(--brand);
+  color: var(--ink);
 }
 
 /* ---------- 4. TIPOGRAFIA ---------- */
@@ -190,26 +196,25 @@ p {
   font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
-  /* lima puro sobre branco reprova no AA; este tom mantém a família */
-  color: #5f7a06;
+  color: var(--brand-text);
 }
 
 .section--dark .tag,
 .foot .tag {
-  color: var(--lime);
+  color: var(--brand);
 }
 
-/* sobre fundo lima, o texto precisa ser preto */
+/* sobre o dourado cheio, o texto precisa ser escuro */
 .tag--dark {
-  color: rgba(10, 10, 10, .72);
+  color: rgba(27, 21, 14, .85);
 }
 
 .tag__dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--lime);
-  box-shadow: 0 0 0 4px rgba(199, 245, 30, .25);
+  background: var(--brand);
+  box-shadow: 0 0 0 4px rgba(209, 148, 67, .25);
 }
 
 .h2 {
@@ -219,27 +224,27 @@ p {
 
 .h2 em {
   font-style: normal;
-  color: var(--lime-deep);
+  color: var(--brand-text);
 }
 
 .section--dark .h2 em,
 .final__title em {
-  color: var(--lime);
+  color: var(--brand);
 }
 
-.section--lime .h2 em {
-  color: var(--white);
+.section--brand .h2 em {
+  color: var(--paper);
 }
 
 .lead {
   margin-top: 1.25rem;
   font-size: var(--fs-body);
-  color: var(--on-white-mut);
+  color: var(--on-paper-mut);
   max-width: 54ch;
 }
 
 .section--dark .lead {
-  color: var(--on-black-mut);
+  color: var(--on-ink-mut);
 }
 
 .head {
@@ -282,24 +287,24 @@ p {
   transform: translateX(4px);
 }
 
-.btn--lime {
-  background: var(--lime);
-  color: var(--black);
-  box-shadow: var(--sh-lime);
+.btn--brand {
+  background: var(--brand);
+  color: var(--ink);
+  box-shadow: var(--sh-brand);
 }
 
-.btn--lime:hover {
-  background: #d4ff33;
+.btn--brand:hover {
+  background: #e0a959;
   transform: translateY(-3px);
 }
 
 .btn--dark {
-  background: var(--black);
-  color: var(--on-black);
+  background: var(--ink);
+  color: var(--on-ink);
 }
 
 .btn--dark:hover {
-  background: var(--black-3);
+  background: var(--ink-3);
   transform: translateY(-3px);
 }
 
@@ -310,14 +315,14 @@ p {
 }
 
 .btn--outline:hover {
-  border-color: var(--lime);
-  color: var(--lime);
+  border-color: var(--brand);
+  color: var(--brand);
   transform: translateY(-3px);
 }
 
-.section--lime .btn--outline:hover {
-  border-color: var(--black);
-  color: var(--black);
+.section--brand .btn--outline:hover {
+  border-color: var(--ink);
+  color: var(--ink);
 }
 
 .btn--lg {
@@ -353,8 +358,8 @@ p {
   font-family: var(--display);
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--black);
-  background: var(--lime);
+  color: var(--ink);
+  background: var(--brand);
   border-radius: 11px;
 }
 
@@ -363,20 +368,20 @@ p {
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: -.02em;
-  color: var(--on-white);
+  color: var(--on-paper);
 }
 
 .brand__name span {
-  color: var(--on-white-mut);
+  color: var(--on-paper-mut);
   font-weight: 500;
 }
 
 .foot .brand__name {
-  color: var(--on-black);
+  color: var(--on-ink);
 }
 
 .foot .brand__name span {
-  color: var(--on-black-mut);
+  color: var(--on-ink-mut);
 }
 
 /* ---------- 7. TOPBAR ----------
@@ -391,14 +396,14 @@ p {
   left: 0;
   right: 0;
   z-index: 100;
-  background: var(--white);
+  background: var(--paper);
   border-bottom: 1px solid transparent;
   transition: border-color .3s var(--ease), box-shadow .3s var(--ease);
 }
 
 .topbar.is-stuck {
   border-bottom-color: var(--line-light);
-  box-shadow: 0 4px 20px -12px rgba(10, 10, 10, .3);
+  box-shadow: 0 4px 20px -12px rgba(27, 21, 14, .55);
 }
 
 .topbar__inner {
@@ -427,15 +432,15 @@ p {
   padding: .5rem .85rem;
   font-size: var(--fs-sm);
   font-weight: 500;
-  color: var(--on-white-mut);
+  color: var(--on-paper-mut);
   border-radius: var(--r-pill);
   transition: color .25s var(--ease), background .25s var(--ease);
 }
 
 .nav__list a:hover,
 .nav__list a.is-active {
-  color: var(--on-white);
-  background: rgba(199, 245, 30, .22);
+  color: var(--on-paper);
+  background: rgba(209, 148, 67, .22);
 }
 
 .burger {
@@ -452,7 +457,7 @@ p {
   width: 22px;
   height: 2px;
   border-radius: 2px;
-  background: var(--on-white);
+  background: var(--on-paper);
   transition: transform .3s var(--ease), opacity .2s var(--ease);
 }
 
@@ -484,7 +489,7 @@ p {
   position: fixed;
   inset: 0;
   z-index: 90;
-  background: rgba(10, 10, 10, .5);
+  background: rgba(27, 21, 14, .5);
   opacity: 0;
   transition: opacity .3s var(--ease);
 }
@@ -508,7 +513,7 @@ p {
     z-index: 95;
     width: min(330px, 84vw);
     padding: calc(var(--bar-h) + 2rem) var(--pad-x) 2.5rem;
-    background: var(--black);
+    background: var(--ink);
     flex-direction: column;
     align-items: stretch;
     gap: 1.75rem;
@@ -530,13 +535,13 @@ p {
   .nav__list a {
     padding: 1rem;
     font-size: 1.0625rem;
-    color: var(--on-black-mut);
+    color: var(--on-ink-mut);
   }
 
   .nav__list a:hover,
   .nav__list a.is-active {
-    color: var(--black);
-    background: var(--lime);
+    color: var(--ink);
+    background: var(--brand);
   }
 }
 
@@ -558,7 +563,7 @@ p {
   width: min(760px, 88vw);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(circle at 32% 32%, rgba(199, 245, 30, .5), rgba(255, 45, 120, .16) 55%, transparent 72%);
+  background: radial-gradient(circle at 32% 32%, rgba(209, 148, 67, .5), rgba(244, 170, 70, .22) 55%, transparent 72%);
   filter: blur(52px);
   animation: drift 26s var(--ease) infinite alternate;
 }
@@ -587,7 +592,7 @@ p {
 .hero__title em {
   position: relative;
   font-style: normal;
-  color: var(--on-white);
+  color: var(--on-paper);
   white-space: nowrap;
 }
 
@@ -599,14 +604,14 @@ p {
   right: 0;
   bottom: -.12em;
   height: .16em;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 8' preserveAspectRatio='none'%3E%3Cpath d='M0 5 Q5 0 10 5 T20 5 T30 5 T40 5' fill='none' stroke='%23c7f51e' stroke-width='3'/%3E%3C/svg%3E") repeat-x center/auto 100%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 8' preserveAspectRatio='none'%3E%3Cpath d='M0 5 Q5 0 10 5 T20 5 T30 5 T40 5' fill='none' stroke='%23d19443' stroke-width='3'/%3E%3C/svg%3E") repeat-x center/auto 100%;
 }
 
 .hero__sub {
   margin-top: 1.5rem;
   max-width: 46ch;
   font-size: 1.1875rem;
-  color: var(--on-white-mut);
+  color: var(--on-paper-mut);
 }
 
 .hero__cta {
@@ -620,7 +625,7 @@ p {
   position: relative;
   border-radius: var(--r-card);
   overflow: hidden;
-  background: #efefef;
+  background: #f0e9e0;
   aspect-ratio: 4 / 5;
 }
 
@@ -638,8 +643,8 @@ p {
   display: flex;
   flex-direction: column;
   padding: .75rem 1.15rem;
-  background: var(--lime);
-  color: var(--black);
+  background: var(--brand);
+  color: var(--ink);
   border-radius: 16px;
 }
 
@@ -653,7 +658,7 @@ p {
 .hero__chip span {
   font-size: var(--fs-xs);
   font-weight: 500;
-  color: rgba(10, 10, 10, .72);
+  color: rgba(27, 21, 14, .85);
 }
 
 @media (min-width: 900px) {
@@ -664,8 +669,8 @@ p {
 
 /* ---------- 9. NÚMEROS ---------- */
 .stats {
-  background: var(--black);
-  color: var(--on-black);
+  background: var(--ink);
+  color: var(--on-ink);
   padding-block: clamp(2.5rem, 5vw, 4rem);
 }
 
@@ -682,7 +687,7 @@ p {
   font-weight: 700;
   line-height: 1;
   letter-spacing: -.04em;
-  color: var(--lime);
+  color: var(--brand);
 }
 
 .stat__x {
@@ -694,7 +699,7 @@ p {
   display: block;
   margin-top: .75rem;
   font-size: var(--fs-sm);
-  color: var(--on-black-mut);
+  color: var(--on-ink-mut);
 }
 
 @media (min-width: 700px) {
@@ -711,7 +716,7 @@ p {
 
 .card {
   padding: clamp(1.75rem, 3vw, 2.25rem);
-  background: var(--white);
+  background: var(--paper);
   border: 1px solid var(--line-light);
   border-radius: var(--r-card);
   transition: transform .3s var(--ease), box-shadow .3s var(--ease),
@@ -720,7 +725,7 @@ p {
 
 .card:hover {
   transform: translateY(-4px) scale(1.02);
-  border-color: rgba(199, 245, 30, .6);
+  border-color: rgba(209, 148, 67, .6);
   box-shadow: var(--sh-card);
 }
 
@@ -731,8 +736,8 @@ p {
   height: 52px;
   margin-bottom: 1.25rem;
   border-radius: 15px;
-  background: rgba(199, 245, 30, .25);
-  color: #4d6305;
+  background: rgba(209, 148, 67, .25);
+  color: var(--brand-text);
 }
 
 .card h3 {
@@ -742,7 +747,7 @@ p {
 
 .card p {
   font-size: var(--fs-sm);
-  color: var(--on-white-mut);
+  color: var(--on-paper-mut);
 }
 
 @media (min-width: 700px) {
@@ -759,14 +764,14 @@ p {
 
 .step {
   padding: clamp(1.5rem, 3vw, 2rem);
-  background: rgba(10, 10, 10, .06);
+  background: rgba(27, 21, 14, .06);
   border-radius: var(--r-card);
   transition: transform .3s var(--ease), background .3s var(--ease);
 }
 
 .step:hover {
   transform: translateY(-4px);
-  background: rgba(10, 10, 10, .1);
+  background: rgba(27, 21, 14, .1);
 }
 
 .step__n {
@@ -776,9 +781,10 @@ p {
   font-weight: 700;
   line-height: 1;
   letter-spacing: -.04em;
-  /* .3 rendia apenas 1.97:1 sobre o lima — reprovava no AA mesmo
-     como texto grande (mínimo 3:1). .58 leva a ~4.2:1. */
-  color: rgba(10, 10, 10, .58);
+  /* O dourado é um tom médio: texto escuro translúcido sobre ele perde
+     contraste rápido. .72 leva o numeral a 4.5:1 (mínimo 3 para texto
+     grande); abaixo disso reprova. */
+  color: rgba(27, 21, 14, .72);
   margin-bottom: .85rem;
 }
 
@@ -789,7 +795,7 @@ p {
 
 .step p {
   font-size: var(--fs-sm);
-  color: rgba(10, 10, 10, .72);
+  color: rgba(27, 21, 14, .85);
 }
 
 .steps__cta {
@@ -834,7 +840,7 @@ p {
   border-radius: var(--r-card);
   overflow: hidden;
   aspect-ratio: 4 / 5;
-  background: #efefef;
+  background: #f0e9e0;
 }
 
 .about__main img {
@@ -853,7 +859,7 @@ p {
   border-radius: 18px;
   overflow: hidden;
   aspect-ratio: 1;
-  background: #efefef;
+  background: #f0e9e0;
 }
 
 .about__pair img {
@@ -872,7 +878,7 @@ p {
 }
 
 .about__copy p:not(.about__hi):not(.tag) {
-  color: var(--on-white-mut);
+  color: var(--on-paper-mut);
   font-size: var(--fs-sm);
 }
 
@@ -901,7 +907,7 @@ p {
   display: flex;
   flex-direction: column;
   padding: clamp(1.75rem, 3.5vw, 2.5rem);
-  background: var(--black-2);
+  background: var(--ink-2);
   border: 1px solid var(--line-dark);
   border-radius: var(--r-card);
   transition: transform .3s var(--ease), border-color .3s var(--ease),
@@ -910,12 +916,12 @@ p {
 
 .plan:hover {
   transform: translateY(-4px);
-  border-color: rgba(199, 245, 30, .5);
+  border-color: rgba(209, 148, 67, .5);
   box-shadow: var(--sh-card);
 }
 
 .plan--featured {
-  border-color: var(--lime);
+  border-color: var(--brand);
 }
 
 .plan__badge {
@@ -925,8 +931,8 @@ p {
   padding: .35rem 1rem;
   font-size: var(--fs-xs);
   font-weight: 600;
-  color: var(--black);
-  background: var(--lime);
+  color: var(--ink);
+  background: var(--brand);
   border-radius: var(--r-pill);
 }
 
@@ -935,7 +941,7 @@ p {
   font-weight: 600;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--lime);
+  color: var(--brand);
 }
 
 .plan__title {
@@ -945,7 +951,7 @@ p {
 
 .plan__for {
   font-size: var(--fs-sm);
-  color: var(--on-black-mut);
+  color: var(--on-ink-mut);
   padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--line-dark);
 }
@@ -960,7 +966,7 @@ p {
   position: relative;
   padding-left: 1.9rem;
   font-size: var(--fs-sm);
-  color: var(--on-black-mut);
+  color: var(--on-ink-mut);
 }
 
 .plan__list li::before {
@@ -971,7 +977,7 @@ p {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: rgba(199, 245, 30, .2);
+  background: rgba(209, 148, 67, .2);
 }
 
 .plan__list li::after {
@@ -981,8 +987,8 @@ p {
   top: .58em;
   width: 8px;
   height: 4px;
-  border-left: 2px solid var(--lime);
-  border-bottom: 2px solid var(--lime);
+  border-left: 2px solid var(--brand);
+  border-bottom: 2px solid var(--brand);
   transform: rotate(-45deg);
 }
 
@@ -994,7 +1000,7 @@ p {
   margin-top: 2.5rem;
   text-align: center;
   font-size: var(--fs-sm);
-  color: var(--on-black-mut);
+  color: var(--on-ink-mut);
 }
 
 @media (min-width: 800px) {
@@ -1010,7 +1016,7 @@ p {
 }
 
 .faq__item {
-  background: var(--white);
+  background: var(--paper);
   border: 1px solid var(--line-light);
   border-radius: 18px;
   transition: border-color .25s var(--ease);
@@ -1018,7 +1024,7 @@ p {
 
 .faq__item.is-open,
 .faq__item:hover {
-  border-color: rgba(199, 245, 30, .7);
+  border-color: rgba(209, 148, 67, .7);
 }
 
 .faq h3 {
@@ -1050,7 +1056,7 @@ p {
   height: 22px;
   flex-shrink: 0;
   border-radius: 50%;
-  background: rgba(199, 245, 30, .3);
+  background: rgba(209, 148, 67, .3);
 }
 
 .faq__ico::before,
@@ -1060,7 +1066,7 @@ p {
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  background: #4d6305;
+  background: var(--brand-text);
   transition: transform .3s var(--ease), opacity .25s var(--ease);
 }
 
@@ -1089,7 +1095,7 @@ p {
   overflow: hidden;
   padding-inline: 1.5rem;
   font-size: var(--fs-sm);
-  color: var(--on-white-mut);
+  color: var(--on-paper-mut);
 }
 
 .faq__item.is-open .faq__a {
@@ -1102,8 +1108,8 @@ p {
 
 /* ---------- 15. CTA FINAL ---------- */
 .final {
-  background: var(--lime);
-  color: var(--black);
+  background: var(--brand);
+  color: var(--ink);
   padding-block: clamp(4rem, 9vw, 7rem);
   text-align: center;
 }
@@ -1125,20 +1131,20 @@ p {
   margin: 1.25rem auto 2.5rem;
   max-width: 46ch;
   font-size: var(--fs-sm);
-  color: rgba(10, 10, 10, .75);
+  color: rgba(27, 21, 14, .85);
 }
 
 .final__note {
   margin-top: 1.5rem;
   font-size: var(--fs-xs);
   font-weight: 500;
-  color: rgba(10, 10, 10, .7);
+  color: rgba(27, 21, 14, .85);
 }
 
 /* ---------- 16. RODAPÉ ---------- */
 .foot {
-  background: var(--black);
-  color: var(--on-black-mut);
+  background: var(--ink);
+  color: var(--on-ink-mut);
   font-size: var(--fs-sm);
 }
 
@@ -1159,7 +1165,7 @@ p {
   font-weight: 600;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--lime);
+  color: var(--brand);
   margin-bottom: 1rem;
 }
 
@@ -1177,11 +1183,11 @@ p {
 }
 
 .foot__col li a:hover {
-  color: var(--lime);
+  color: var(--brand);
 }
 
 .foot__contact svg {
-  color: var(--lime);
+  color: var(--brand);
   flex-shrink: 0;
 }
 
@@ -1210,7 +1216,7 @@ p {
 }
 
 .foot__base a:hover {
-  color: var(--lime);
+  color: var(--brand);
 }
 
 @media (min-width: 760px) {
@@ -1254,7 +1260,7 @@ p {
 
 /* ---------- 18. PÁGINAS LEGAIS ---------- */
 .legal-page {
-  background: var(--white);
+  background: var(--paper);
 }
 
 .legal-bar {
@@ -1285,12 +1291,12 @@ p {
   font-weight: 600;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: #5f7a06;
+  color: var(--brand-text);
 }
 
 .legal__intro {
   margin-top: 1.75rem;
-  color: var(--on-white-mut);
+  color: var(--on-paper-mut);
 }
 
 .legal section {
@@ -1312,12 +1318,12 @@ p {
   content: counter(legal, decimal-leading-zero);
   font-family: var(--display);
   font-size: .9rem;
-  color: #5f7a06;
+  color: var(--brand-text);
 }
 
 .legal p,
 .legal li {
-  color: var(--on-white-mut);
+  color: var(--on-paper-mut);
   font-size: var(--fs-sm);
   max-width: 68ch;
 }
@@ -1341,16 +1347,16 @@ p {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--lime);
+  background: var(--brand);
 }
 
 .legal strong {
-  color: var(--on-white);
+  color: var(--on-paper);
 }
 
 .legal a:not(.btn) {
-  color: var(--on-white);
-  border-bottom: 2px solid var(--lime);
+  color: var(--on-paper);
+  border-bottom: 2px solid var(--brand);
 }
 
 .legal__back {
